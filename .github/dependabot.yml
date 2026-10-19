@@ -1,18 +1,161 @@
 version: 2
 updates:
+  # 1. Root Monorepo & Core Tooling (npm)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
     open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
     labels:
       - "dependencies"
       - "javascript"
+      - "automated"
+    assignees:
+      - "Maijied"
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
 
+  # 2. Core Package (@lorapok/nocatch)
+  - package-ecosystem: "npm"
+    directory: "/packages/core"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps-core)"
+    labels:
+      - "dependencies"
+      - "core"
+      - "automated"
+    assignees:
+      - "Maijied"
+
+  # 3. Web Frontend (Vite + React + Tailwind)
+  - package-ecosystem: "npm"
+    directory: "/web"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps-web)"
+    labels:
+      - "dependencies"
+      - "web"
+      - "automated"
+    assignees:
+      - "Maijied"
+    groups:
+      web-dependencies:
+        patterns:
+          - "*"
+
+  # 4. API Server Backend (Express)
+  - package-ecosystem: "npm"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps-server)"
+    labels:
+      - "dependencies"
+      - "server"
+      - "automated"
+    assignees:
+      - "Maijied"
+
+  # 5. Discord Application Bot (Discord.js)
+  - package-ecosystem: "npm"
+    directory: "/discord-bot"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps-bot)"
+    labels:
+      - "dependencies"
+      - "discord-bot"
+      - "automated"
+    assignees:
+      - "Maijied"
+
+  # 6. PHP Composer Library
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps-composer)"
+    labels:
+      - "dependencies"
+      - "php"
+      - "packagist"
+      - "automated"
+    assignees:
+      - "Maijied"
+
+  # 7. Container Images (Dockerfile)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps-docker)"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "ghcr"
+      - "automated"
+    assignees:
+      - "Maijied"
+
+  # 8. GitHub Actions Workflows
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "ci(actions)"
     labels:
       - "dependencies"
       - "ci"
+      - "automated"
+    assignees:
+      - "Maijied"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
