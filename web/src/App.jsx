@@ -36,7 +36,9 @@ import {
   ChevronUp,
   Code,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Menu,
+  X
 } from 'lucide-react';
 
 const DEMO_URL = 'https://notebook.google.com/notebook/8b88ac32-9785-489b-a224-9d95864fddca/artifact/48e08424-d530-4d98-990c-a08dce8e015d';
@@ -54,6 +56,7 @@ export default function App() {
   const [playerMode, setPlayerMode] = useState('audio'); // audio | video
   const [bundleProgress, setBundleProgress] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Audio Player State
   const [isPlaying, setIsPlaying] = useState(false);
@@ -360,6 +363,29 @@ Mission Control: https://lorapok.tech
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // Smooth scroll handler for in-page anchors
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
+
+  // Auto-scroll on initial load if hash is present
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  }, []);
+
   return (
     <div className="relative min-h-screen text-slate-100 flex flex-col justify-between selection:bg-[#39FF14] selection:text-black">
       {/* Background Live Canvas */}
@@ -369,53 +395,173 @@ Mission Control: https://lorapok.tech
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       {/* Navigation Header */}
-      <header className="relative z-10 border-b border-slate-800/80 bg-[#030712]/80 backdrop-blur-md sticky top-0 px-6 py-4">
+      <header className="sticky top-0 z-50 border-b border-slate-800/90 bg-[#030712]/95 backdrop-blur-xl px-6 py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 to-black border border-[#39FF14]/40 shadow-[0_0_20px_rgba(57,255,20,0.25)] overflow-hidden">
-              <img src="/assets/nocatch-app-icon.png" alt="NoCatch Logo" className="w-10 h-10 object-contain" />
-              <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
+          {/* Logo & Brand Identity */}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.history.pushState(null, '', '/');
+            }}
+            className="group flex items-center gap-3 select-none"
+          >
+            <div className="relative flex items-center justify-center">
+              <img
+                src="/assets/nocatch-app-icon.png"
+                alt="NoCatch Logo"
+                className="w-10 h-10 rounded-2xl shadow-[0_0_15px_rgba(0,243,255,0.35)] transition duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(57,255,20,0.5)]"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F3FF] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#39FF14]"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#39FF14]"></span>
               </span>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+                <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:text-white transition">
                   NoCatch
                 </span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-[#39FF14]/10 text-[#39FF14] border border-[#39FF14]/30">
+                <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30">
                   v2.0 Core
                 </span>
               </div>
               <span className="text-xs text-slate-400 font-mono tracking-tight flex items-center gap-1">
-                by <a href="https://lorapok.tech" target="_blank" rel="noreferrer" className="text-slate-300 hover:text-[#00F3FF] transition">Lorapok Labs</a>
+                by <span className="text-slate-300 group-hover:text-[#00F3FF] transition">Lorapok Labs</span>
               </span>
             </div>
+          </a>
+
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-300">
+            <a
+              href="#tutorial"
+              onClick={(e) => scrollToSection(e, 'tutorial')}
+              className="px-3 py-1.5 rounded-xl hover:bg-slate-800/80 hover:text-[#39FF14] transition flex items-center gap-1.5 text-slate-300"
+            >
+              <BookOpen className="w-4 h-4 text-[#39FF14]" />
+              <span>Tutorial &amp; Guide</span>
+            </a>
+            <a
+              href="#features"
+              onClick={(e) => scrollToSection(e, 'features')}
+              className="px-3 py-1.5 rounded-xl hover:bg-slate-800/80 hover:text-[#00F3FF] transition flex items-center gap-1.5 text-slate-300"
+            >
+              <Zap className="w-4 h-4 text-[#00F3FF]" />
+              <span>Features</span>
+            </a>
+            <a
+              href="#discord-bot"
+              onClick={(e) => scrollToSection(e, 'discord-bot')}
+              className="px-3 py-1.5 rounded-xl hover:bg-slate-800/80 hover:text-[#BC13FE] transition flex items-center gap-1.5 text-slate-300"
+            >
+              <Bot className="w-4 h-4 text-[#BC13FE]" />
+              <span>Discord App</span>
+            </a>
+            <a
+              href="#extension"
+              onClick={(e) => scrollToSection(e, 'extension')}
+              className="px-3 py-1.5 rounded-xl hover:bg-slate-800/80 hover:text-[#39FF14] transition flex items-center gap-1.5 text-slate-300"
+            >
+              <Globe className="w-4 h-4 text-[#39FF14]" />
+              <span>Browser Addon</span>
+            </a>
+            <a
+              href="#api"
+              onClick={(e) => scrollToSection(e, 'api')}
+              className="px-3 py-1.5 rounded-xl hover:bg-slate-800/80 hover:text-white transition flex items-center gap-1.5 text-slate-300"
+            >
+              <Code className="w-4 h-4 text-slate-400" />
+              <span>Developer API</span>
+            </a>
+            <div className="h-4 w-px bg-slate-800 mx-1" />
+            <a
+              href="https://github.com/Lorapok/nocatch"
+              target="_blank"
+              rel="noreferrer"
+              className="ml-1 px-3.5 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-white font-medium transition flex items-center gap-1.5 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-slate-300" /> GitHub
+            </a>
           </div>
 
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
-            <a href="#tutorial" className="hover:text-[#39FF14] text-slate-300 font-semibold transition flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4 text-[#39FF14]" /> Tutorial & Guide
-            </a>
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#discord-bot" className="hover:text-[#00F3FF] transition flex items-center gap-1">
-              <Bot className="w-4 h-4" /> Discord App
-            </a>
-            <a href="#extension" className="hover:text-[#39FF14] transition flex items-center gap-1">
-              <Globe className="w-4 h-4" /> Browser Addon
-            </a>
-            <a href="#api" className="hover:text-white transition">Developer API</a>
-            <a 
-              href="https://github.com/Lorapok/nocatch" 
-              target="_blank" 
+          {/* Mobile Hamburger & Actions */}
+          <div className="flex lg:hidden items-center gap-2">
+            <a
+              href="https://github.com/Lorapok/nocatch"
+              target="_blank"
               rel="noreferrer"
-              className="px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 transition flex items-center gap-1.5"
+              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition"
+              aria-label="GitHub Repository"
             >
-              <ExternalLink className="w-3.5 h-3.5" /> GitHub
+              <ExternalLink className="w-4 h-4" />
             </a>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-[#39FF14]/50 transition"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5 text-[#39FF14]" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden mt-3 pt-3 border-t border-slate-800/80 space-y-2 animate-in fade-in duration-200">
+            <a
+              href="#tutorial"
+              onClick={(e) => {
+                scrollToSection(e, 'tutorial');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-white font-medium text-sm border border-slate-800"
+            >
+              <BookOpen className="w-4 h-4 text-[#39FF14]" /> Tutorial &amp; Guide
+            </a>
+            <a
+              href="#features"
+              onClick={(e) => {
+                scrollToSection(e, 'features');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-white font-medium text-sm border border-slate-800"
+            >
+              <Zap className="w-4 h-4 text-[#00F3FF]" /> Features
+            </a>
+            <a
+              href="#discord-bot"
+              onClick={(e) => {
+                scrollToSection(e, 'discord-bot');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-white font-medium text-sm border border-slate-800"
+            >
+              <Bot className="w-4 h-4 text-[#BC13FE]" /> Discord App
+            </a>
+            <a
+              href="#extension"
+              onClick={(e) => {
+                scrollToSection(e, 'extension');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-white font-medium text-sm border border-slate-800"
+            >
+              <Globe className="w-4 h-4 text-[#39FF14]" /> Browser Addon
+            </a>
+            <a
+              href="#api"
+              onClick={(e) => {
+                scrollToSection(e, 'api');
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-white font-medium text-sm border border-slate-800"
+            >
+              <Code className="w-4 h-4 text-slate-400" /> Developer API
+            </a>
+          </div>
+        )}
       </header>
 
       {/* Main Content Area */}
@@ -1017,7 +1163,7 @@ Mission Control: https://lorapok.tech
         </div>
 
         {/* Feature Grid Section */}
-        <section id="features" className="py-12 border-t border-slate-800/80">
+        <section id="features" className="py-12 border-t border-slate-800/80 scroll-mt-24">
           <div className="text-center mb-10">
             <span className="text-xs font-mono text-[#39FF14] uppercase tracking-widest">Engineering Highlights</span>
             <h2 className="text-3xl font-bold tracking-tight text-white mt-1">
@@ -1059,7 +1205,7 @@ Mission Control: https://lorapok.tech
         </section>
 
         {/* Discord Bot & Browser Extension Showcase */}
-        <section id="discord-bot" className="py-12 border-t border-slate-800/80">
+        <section id="discord-bot" className="py-12 border-t border-slate-800/80 scroll-mt-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="glass-panel-glow rounded-3xl p-8 space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-xs font-mono text-[#5865F2]">
@@ -1083,7 +1229,7 @@ Mission Control: https://lorapok.tech
               </a>
             </div>
 
-            <div id="extension" className="glass-panel-glow rounded-3xl p-8 space-y-4">
+            <div id="extension" className="glass-panel-glow rounded-3xl p-8 space-y-4 scroll-mt-24">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#39FF14]/20 border border-[#39FF14]/40 text-xs font-mono text-[#39FF14]">
                 <Globe className="w-4 h-4" /> Browser Addon
               </div>
@@ -1110,7 +1256,7 @@ Mission Control: https://lorapok.tech
         </section>
 
         {/* Step-by-Step Tutorial & Documentation Section */}
-        <section id="tutorial" className="py-12 border-t border-slate-800/80">
+        <section id="tutorial" className="py-12 border-t border-slate-800/80 scroll-mt-24">
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/30 text-xs font-mono text-[#39FF14] mb-3">
               <BookOpen className="w-3.5 h-3.5" />
@@ -1338,7 +1484,7 @@ Mission Control: https://lorapok.tech
         </section>
 
         {/* Developer API Section */}
-        <section id="api" className="py-12 border-t border-slate-800/80">
+        <section id="api" className="py-12 border-t border-slate-800/80 scroll-mt-24">
           <div className="glass-panel rounded-3xl p-8 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>

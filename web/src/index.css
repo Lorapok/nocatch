@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
   :root {
     --bg-canvas: #030712;
     --accent-cyan: #00F3FF;
