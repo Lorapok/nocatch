@@ -1,5 +1,9 @@
 # ⚡ NoCatch
 
+<p align="center">
+  <img src="assets/branding/nocatch-hero-banner.png" alt="NoCatch - Universal Google NotebookLM Harvester" width="100%">
+</p>
+
 > **Universal Google NotebookLM Media & Artifact Harvester**  
 > *Official Product of [Lorapok Labs](https://lorapok.tech) • Hosted at [nocatch.lorapok.tech](https://nocatch.lorapok.tech)*
 
@@ -26,9 +30,17 @@
 
 ## 🏛 System Architecture
 
+<p align="center">
+  <img src="assets/branding/nocatch-studio-map.png" alt="NoCatch Universal Studio Harvester Architecture Map" width="100%">
+</p>
+
 ```
 nocatch/
-├── assets/branding/             # Lorapok Labs official logos, SVGs & marks
+├── assets/branding/             # Lorapok Labs visual assets & marks
+│   ├── nocatch-hero-banner.png  # Master visual banner (1600x900)
+│   ├── nocatch-studio-map.png   # Studio architecture diagram (1200x600)
+│   ├── nocatch-social-card.png  # OpenGraph social preview (1280x640)
+│   ├── nocatch-app-icon.png     # Official app icon squircle (512x512)
 │   ├── nocatch-logo.svg         # Official NoCatch brand mark
 │   └── loragent-logo-mark.svg   # Lorapok squircle mark
 ├── packages/core/               # Core Extraction Library & CLI (@lorapok/nocatch-core)

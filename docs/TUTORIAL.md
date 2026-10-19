@@ -2,6 +2,10 @@
 ### *Universal Google NotebookLM Audio, Video & Artifact Harvester*
 *A Product of [Lorapok Labs](https://lorapok.tech) • Live at [nocatch.lorapok.tech](https://nocatch.lorapok.tech)*
 
+<p align="center">
+  <img src="../assets/branding/nocatch-hero-banner.png" alt="NoCatch - Universal Google NotebookLM Harvester" width="100%">
+</p>
+
 ---
 
 ## 📑 Table of Contents
@@ -40,6 +44,10 @@ Google NotebookLM generates rich, AI-synthesized multimedia artifacts from user 
 However, Google NotebookLM provides no native mechanism to download raw MP4 video streams, export Markdown briefing docs directly, or bundle all generated studio assets into an indexed archive.
 
 **NoCatch** solves this completely by communicating directly with Google's low-level RPC endpoint (`v9rmvd`), extracting the uncompressed media streams from Google's content delivery network, and providing instant single-file or 1-click master ZIP bundle downloads.
+
+<p align="center">
+  <img src="../assets/branding/nocatch-studio-map.png" alt="NoCatch Universal Studio Harvester Architecture Map" width="100%">
+</p>
 
 ---
 

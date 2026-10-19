@@ -372,8 +372,8 @@ Mission Control: https://lorapok.tech
       <header className="relative z-10 border-b border-slate-800/80 bg-[#030712]/80 backdrop-blur-md sticky top-0 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 to-black border border-[#39FF14]/40 shadow-[0_0_20px_rgba(57,255,20,0.25)]">
-              <img src="/assets/nocatch-logo.svg" alt="NoCatch Logo" className="w-8 h-8 object-contain" />
+            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 to-black border border-[#39FF14]/40 shadow-[0_0_20px_rgba(57,255,20,0.25)] overflow-hidden">
+              <img src="/assets/nocatch-app-icon.png" alt="NoCatch Logo" className="w-10 h-10 object-contain" />
               <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F3FF] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-[#39FF14]"></span>
@@ -1005,6 +1005,17 @@ Mission Control: https://lorapok.tech
           </div>
         )}
 
+        {/* Visual Showcase: Master Product Banner */}
+        <div className="mb-14 rounded-3xl overflow-hidden border border-[#39FF14]/30 shadow-[0_0_35px_rgba(57,255,20,0.15)] bg-slate-950/80 p-2">
+          <div className="relative group rounded-2xl overflow-hidden">
+            <img 
+              src="/assets/nocatch-hero-banner.png" 
+              alt="NoCatch Master Hero Banner - Universal Google NotebookLM Harvester" 
+              className="w-full h-auto object-cover rounded-2xl transition duration-500 group-hover:scale-[1.01]"
+            />
+          </div>
+        </div>
+
         {/* Feature Grid Section */}
         <section id="features" className="py-12 border-t border-slate-800/80">
           <div className="text-center mb-10">
@@ -1111,6 +1122,21 @@ Mission Control: https://lorapok.tech
             <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mt-2">
               Everything you need to master Google NotebookLM extraction. Learn how links work, how to preview and download all 5 studio assets, and how to automate with bots and extensions.
             </p>
+          </div>
+
+          {/* Architecture Pipeline Map Banner */}
+          <div className="mb-12 rounded-3xl overflow-hidden border border-[#00F3FF]/30 shadow-[0_0_35px_rgba(0,243,255,0.15)] bg-slate-950/80 p-2">
+            <div className="relative group rounded-2xl overflow-hidden">
+              <img 
+                src="/assets/nocatch-studio-map.png" 
+                alt="NoCatch Universal Studio Harvester Architecture Map" 
+                className="w-full h-auto object-cover rounded-2xl"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+                <span className="text-xs font-mono text-[#39FF14]">LORAPOK NEURAL PIPELINE</span>
+                <span className="text-sm font-semibold text-white">Direct Google batchexecute RPC Stream Extractor &amp; In-Browser JSZip Engine</span>
+              </div>
+            </div>
           </div>
 
           {/* 4-Step Process Walkthrough */}
