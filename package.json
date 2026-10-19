@@ -21,8 +21,8 @@
   "scripts": {
     "dev:server": "npm --prefix server start",
     "dev:web": "npm --prefix web dev",
-    "build:web": "npm --prefix web build",
-    "test:core": "node --test packages/core/test/*.js",
+    "build:web": "npm --prefix web run build",
+    "test:core": "node --test packages/core/test/*.test.js",
     "test:discord": "npm --prefix discord-bot run test-link",
     "cli": "node packages/core/bin/nocatch.js"
   },
