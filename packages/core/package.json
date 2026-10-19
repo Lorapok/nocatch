@@ -1,12 +1,21 @@
 {
-  "name": "@lorapok/nocatch-core",
+  "name": "lorapok-nocatch",
   "version": "1.0.0",
-  "description": "Universal Google NotebookLM Downloader & Extractor by Lorapok Labs",
+  "description": "Universal Google NotebookLM Media & Artifact Harvester by Lorapok Labs",
   "main": "src/index.js",
   "type": "module",
   "bin": {
-    "nocatch": "bin/nocatch.js"
+    "nocatch": "bin/nocatch.js",
+    "lorapok-nocatch": "bin/nocatch.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lorapok/nocatch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lorapok/nocatch/issues"
+  },
+  "homepage": "https://nocatch.lorapok.tech",
   "scripts": {
     "test": "node --test",
     "start": "node bin/nocatch.js"
@@ -14,11 +23,14 @@
   "keywords": [
     "lorapok",
     "loragent",
+    "nocatch",
     "notebooklm",
     "google-notebook",
     "audio-overview",
+    "podcast-downloader",
     "downloader",
-    "podcast"
+    "podcast",
+    "harvester"
   ],
   "author": "Lorapok Labs <contact@lorapok.tech>",
   "license": "MIT"
