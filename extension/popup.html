@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NoCatch Extension</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 350px;
+      background: #030712;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 10px;
+    }
+    .header img { width: 28px; height: 28px; }
+    .title { font-size: 15px; font-weight: 800; letter-spacing: -0.02em; }
+    .subtitle { font-size: 10px; color: #94a3b8; }
+    .input-box {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-family: monospace;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .input-box:focus { border-color: #39FF14; box-shadow: 0 0 10px rgba(57,255,20,0.2); }
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #00F3FF, #39FF14);
+      color: #000;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .btn:hover { opacity: 0.95; }
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      font-size: 11px;
+      padding: 8px;
+    }
+    .result {
+      background: #0f172a;
+      border: 1px solid rgba(57,255,20,0.3);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 12px;
+      display: none;
+    }
+    .status-text { font-size: 11px; color: #94a3b8; text-align: center; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="NoCatch">
+    <div>
+      <div class="title">⚡ NoCatch Harvester</div>
+      <div class="subtitle">Lorapok Labs • nocatch.lorapok.tech</div>
+    </div>
+  </div>
+
+  <input type="text" id="url-input" class="input-box" placeholder="Paste Google Notebook link...">
+  <button id="extract-btn" class="btn">⚡ Extract & Download</button>
+  <button id="current-tab-btn" class="btn btn-secondary">Detect Current Tab</button>
+
+  <div id="result-box" class="result">
+    <div id="res-title" style="font-weight:700;margin-bottom:4px;"></div>
+    <div id="res-audio" style="color:#39FF14;margin-bottom:8px;"></div>
+    <button id="dl-audio-btn" class="btn" style="padding:8px;font-size:12px;">Download Audio (M4A)</button>
+  </div>
+
+  <div id="status" class="status-text">Ready to harvest Google Notebook podcasts</div>
+
+  <script src="src/popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "@lorapok/nocatch-server",
+  "version": "1.0.0",
+  "description": "NoCatch API Server by Lorapok Labs",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "@lorapok/nocatch-core": "file:../packages/core",
+    "archiver": "^7.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

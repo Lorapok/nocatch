@@ -1,0 +1,25 @@
+{
+  "name": "@lorapok/nocatch-core",
+  "version": "1.0.0",
+  "description": "Universal Google NotebookLM Downloader & Extractor by Lorapok Labs",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "nocatch": "bin/nocatch.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "start": "node bin/nocatch.js"
+  },
+  "keywords": [
+    "lorapok",
+    "loragent",
+    "notebooklm",
+    "google-notebook",
+    "audio-overview",
+    "downloader",
+    "podcast"
+  ],
+  "author": "Lorapok Labs <contact@lorapok.tech>",
+  "license": "MIT"
+}

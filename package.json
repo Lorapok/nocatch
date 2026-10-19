@@ -1,0 +1,32 @@
+{
+  "name": "nocatch",
+  "version": "1.0.0",
+  "description": "Universal Google NotebookLM Harvester by Lorapok Labs — Web App, Discord Bot, Browser Extension & Loragent Agent",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "web",
+    "server",
+    "discord-bot"
+  ],
+  "scripts": {
+    "dev:server": "npm --prefix server start",
+    "dev:web": "npm --prefix web dev",
+    "build:web": "npm --prefix web build",
+    "test:core": "node --test packages/core/test/*.js",
+    "test:discord": "npm --prefix discord-bot run test-link",
+    "cli": "node packages/core/bin/nocatch.js"
+  },
+  "keywords": [
+    "lorapok",
+    "loragent",
+    "notebooklm",
+    "google-notebook",
+    "audio-overview",
+    "podcast-downloader",
+    "discord-bot"
+  ],
+  "author": "Lorapok Labs <contact@lorapok.tech>",
+  "license": "MIT"
+}

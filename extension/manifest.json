@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "NoCatch — Universal Google NotebookLM Harvester",
+  "version": "1.0.0",
+  "description": "Download podcast audio overviews and notes from Google NotebookLM in 1-click across Discord, X, Reddit, LinkedIn, and more. By Lorapok Labs.",
+  "author": "Lorapok Labs <contact@lorapok.tech>",
+  "homepage_url": "https://nocatch.lorapok.tech",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://notebook.google.com/*",
+    "https://notebooklm.google.com/*",
+    "https://*.discord.com/*",
+    "https://*.twitter.com/*",
+    "https://*.x.com/*",
+    "https://*.reddit.com/*",
+    "https://*.linkedin.com/*",
+    "https://*.slack.com/*",
+    "https://nocatch.lorapok.tech/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://notebook.google.com/*",
+        "https://notebooklm.google.com/*",
+        "https://*.discord.com/*",
+        "https://*.twitter.com/*",
+        "https://*.x.com/*",
+        "https://*.reddit.com/*",
+        "https://*.linkedin.com/*",
+        "https://*.slack.com/*"
+      ],
+      "js": ["src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

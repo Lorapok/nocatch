@@ -1,0 +1,16 @@
+{
+  "name": "@lorapok/nocatch-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord Application for NoCatch by Lorapok Labs",
+  "type": "module",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "test-link": "node test/test-discord-link.js"
+  },
+  "dependencies": {
+    "@lorapok/nocatch-core": "file:../packages/core",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7"
+  }
+}
