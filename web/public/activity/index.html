@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Activity Art Assets — NoCatch | Lorapok Labs</title>
+  <meta name="description" content="Official Discord Activity Background, Cover Art, and Video Preview assets for NoCatch.">
+  <link rel="icon" type="image/png" href="/assets/nocatch-app-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #030712; color: #F8FAFC; font-family: 'Inter', sans-serif; padding: 2.5rem 1.5rem; line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #FFF, #00F3FF 60%, #39FF14 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+    .subtitle { color: #94A3B8; margin-bottom: 2rem; font-size: 0.95rem; }
+    .asset-card { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(51, 65, 85, 0.6); border-radius: 1.25rem; padding: 2rem; margin-bottom: 2.5rem; }
+    .asset-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; border-bottom: 1px solid rgba(51, 65, 85, 0.4); padding-bottom: 0.75rem; }
+    .asset-title { font-size: 1.35rem; font-weight: 700; color: #FFF; }
+    .asset-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #39FF14; background: rgba(57, 255, 20, 0.1); border: 1px solid rgba(57, 255, 20, 0.3); padding: 0.2rem 0.6rem; border-radius: 0.4rem; }
+    .asset-desc { font-size: 0.9rem; color: #94A3B8; margin-bottom: 1.25rem; }
+    .asset-preview { width: 100%; border-radius: 0.75rem; border: 1px solid rgba(51, 65, 85, 0.5); overflow: hidden; margin-bottom: 1.25rem; background: #010308; }
+    .asset-preview img, .asset-preview video { width: 100%; height: auto; display: block; }
+    .asset-actions { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .btn-download { display: inline-flex; align-items: center; gap: 0.5rem; background: #00F3FF; color: #000; font-weight: 700; padding: 0.6rem 1.2rem; border-radius: 0.5rem; text-decoration: none; }
+    .btn-download:hover { background: #39FF14; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Discord Activity Art Assets</h1>
+    <p class="subtitle">Complete, production-ready asset pack for Discord Developer Portal &gt; Activities &gt; Art Assets</p>
+
+    <!-- 1. BACKGROUND -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <span class="asset-title">1. Background (Grid View Overlay)</span>
+        <span class="asset-badge">1024 × 576 • 16:9 • PNG</span>
+      </div>
+      <p class="asset-desc">Artwork clustered around outer edges, leaving open center space so Discord's grid UI cards never clash.</p>
+      <div class="asset-preview">
+        <img src="/activity/nocatch-activity-background-1024x576.png" alt="Activity Background" />
+      </div>
+      <div class="asset-actions">
+        <span style="color:#94A3B8">Optimized PNG</span>
+        <a href="/activity/nocatch-activity-background-1024x576.png" download class="btn-download">⬇ Download Background (PNG)</a>
+      </div>
+    </div>
+
+    <!-- 2. COVER ART -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <span class="asset-title">2. Cover Art (Activity Shelf)</span>
+        <span class="asset-badge">1024 × 576 • 16:9 • PNG</span>
+      </div>
+      <p class="asset-desc">Main image on the Discord Activity Shelf featuring radiant NoCatch branding, mascot, and capability badges.</p>
+      <div class="asset-preview">
+        <img src="/activity/nocatch-activity-cover-1024x576.png" alt="Activity Cover Art" />
+      </div>
+      <div class="asset-actions">
+        <span style="color:#94A3B8">Optimized PNG</span>
+        <a href="/activity/nocatch-activity-cover-1024x576.png" download class="btn-download">⬇ Download Cover Art (PNG)</a>
+      </div>
+    </div>
+
+    <!-- 3. VIDEO PREVIEW -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <span class="asset-title">3. Video Preview (Hover &amp; Upsell Menu)</span>
+        <span class="asset-badge">640 × 360 • 16:9 • 10.0s • MP4</span>
+      </div>
+      <p class="asset-desc">10-second cinematic UI demonstration showing Google NotebookLM URL parsing, audio spectrum visualization, and ready studio artifacts. File size: <strong>59.8 KB</strong> (strictly under Discord's 0.5 MB limit).</p>
+      <div class="asset-preview">
+        <video controls autoplay loop muted playsinline>
+          <source src="/activity/nocatch-activity-preview-640x360.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+      <div class="asset-actions">
+        <span style="color:#39FF14">File Size: 59.8 KB / Max 500 KB</span>
+        <a href="/activity/nocatch-activity-preview-640x360.mp4" download class="btn-download">⬇ Download Video (MP4)</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

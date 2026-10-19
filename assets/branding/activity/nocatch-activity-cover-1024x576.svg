@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" width="1024" height="576" fill="none">
+  <defs>
+    <!-- Deep Space Background -->
+    <linearGradient id="cvBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050E22"/>
+      <stop offset="45%" stop-color="#030714"/>
+      <stop offset="85%" stop-color="#080718"/>
+      <stop offset="100%" stop-color="#010308"/>
+    </linearGradient>
+
+    <!-- Neon Brand Text Gradient -->
+    <linearGradient id="cvTitle" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#E2F9FF"/>
+      <stop offset="75%" stop-color="#00F3FF"/>
+      <stop offset="100%" stop-color="#39FF14"/>
+    </linearGradient>
+
+    <radialGradient id="cvMascotGlow" cx="24%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00F3FF" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#5865F2" stop-opacity="0.18"/>
+      <stop offset="80%" stop-color="#030714" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="cvRightGlow" cx="82%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#39FF14" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#00F3FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#030714" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Border Linear Gradient -->
+    <linearGradient id="cvBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5865F2"/>
+      <stop offset="35%" stop-color="#00F3FF"/>
+      <stop offset="70%" stop-color="#39FF14"/>
+      <stop offset="100%" stop-color="#BC13FE"/>
+    </linearGradient>
+
+    <filter id="cvGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur1"/>
+      <feGaussianBlur stdDeviation="3" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="cvGrid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="1.2" fill="#00F3FF" opacity="0.12"/>
+      <path d="M 0 16 L 32 16 M 16 0 L 16 32" stroke="#5865F2" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base Canvas -->
+  <rect width="1024" height="576" rx="20" fill="url(#cvBg)"/>
+  <rect width="1024" height="576" rx="20" fill="url(#cvGrid)"/>
+
+  <!-- Core Neon Auras -->
+  <rect width="1024" height="576" rx="20" fill="url(#cvMascotGlow)"/>
+  <rect width="1024" height="576" rx="20" fill="url(#cvRightGlow)"/>
+
+  <!-- Outer Cyber Border Frame -->
+  <rect x="2" y="2" width="1020" height="572" rx="18" fill="none" stroke="url(#cvBorder)" stroke-width="2.5"/>
+
+  <!-- Top System Rail (y: 36..64) -->
+  <g transform="translate(60, 42)">
+    <!-- Lorapok Labs Activity Tag -->
+    <rect x="0" y="0" width="220" height="32" rx="16" fill="#08142c" stroke="#5865F2" stroke-width="1.2"/>
+    <circle cx="18" cy="16" r="4.5" fill="#39FF14" filter="url(#cvGlow)"/>
+    <text x="32" y="21" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" letter-spacing="1">LORAPOK LABS <tspan fill="#5865F2">//</tspan> <tspan fill="#00F3FF">DISCORD</tspan></text>
+
+    <!-- Activity Badge -->
+    <g transform="translate(236, 0)">
+      <rect x="0" y="0" width="144" height="32" rx="16" fill="#091d17" stroke="#39FF14" stroke-width="1.2"/>
+      <text x="16" y="21" fill="#39FF14" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">⚡ DISCORD ACTIVITY</text>
+    </g>
+
+    <!-- Version Badge -->
+    <g transform="translate(776, 0)">
+      <rect x="0" y="0" width="128" height="32" rx="16" fill="#061224" stroke="#00F3FF" stroke-width="1.2"/>
+      <text x="18" y="21" fill="#00F3FF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">v2.0.0 STABLE</text>
+    </g>
+  </g>
+
+  <!-- LEFT HERO MASCOT / ARTWORK (x: 80..320, y: 130..470) -->
+  <g transform="translate(180, 290)">
+    <!-- Sonic Radial Wave Rings around Mascot -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#5865F2" stroke-width="1.5" opacity="0.3" stroke-dasharray="8 10"/>
+    <circle cx="0" cy="0" r="125" fill="none" stroke="#00F3FF" stroke-width="2" opacity="0.4" stroke-dasharray="6 8"/>
+    <circle cx="0" cy="0" r="95" fill="none" stroke="#39FF14" stroke-width="2.5" opacity="0.6"/>
+
+    <!-- Headphone Arc -->
+    <path d="M -54 20 C -54 -36 -28 -68 0 -68 C 28 -68 54 -36 54 20" fill="none" stroke="#00F3FF" stroke-width="12" stroke-linecap="round" filter="url(#cvGlow)"/>
+
+    <!-- Mascot Head Base -->
+    <rect x="-42" y="-28" width="84" height="74" rx="37" fill="#042028" stroke="#00F3FF" stroke-width="4"/>
+    <!-- Visor Plate -->
+    <rect x="-30" y="-12" width="60" height="42" rx="16" fill="#020810"/>
+    <!-- Glowing Visor Eyes -->
+    <circle cx="-14" cy="9" r="6" fill="#39FF14" filter="url(#cvGlow)"/>
+    <circle cx="14" cy="9" r="6" fill="#39FF14" filter="url(#cvGlow)"/>
+
+    <!-- Ear Cups -->
+    <rect x="-66" y="-6" width="20" height="42" rx="9" fill="#07152b" stroke="#00F3FF" stroke-width="3.5"/>
+    <circle cx="-56" cy="15" r="4.5" fill="#39FF14"/>
+    <rect x="46" y="-6" width="20" height="42" rx="9" fill="#07152b" stroke="#00F3FF" stroke-width="3.5"/>
+    <circle cx="56" cy="15" r="4.5" fill="#39FF14"/>
+
+    <!-- Antenna -->
+    <path d="M 0 -68 V -84" stroke="#39FF14" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="-88" r="5" fill="#39FF14" filter="url(#cvGlow)"/>
+  </g>
+
+  <!-- RIGHT HERO TITLE & CAPABILITIES (x: 360..940, y: 140..460) -->
+  <g transform="translate(370, 210)">
+    <!-- Main Glowing Title -->
+    <text x="0" y="0" fill="url(#cvTitle)" font-family="'Inter', -apple-system, sans-serif" font-size="76" font-weight="900" letter-spacing="-1.5" filter="url(#cvGlow)">NoCatch</text>
+    
+    <!-- Spark Star -->
+    <g transform="translate(340, -68)">
+      <circle cx="20" cy="20" r="22" fill="#00F3FF" opacity="0.15" filter="url(#cvGlow)"/>
+      <path d="M 20 4 L 24 16 L 36 20 L 24 24 L 20 36 L 16 24 L 4 20 L 16 16 Z" fill="#39FF14"/>
+    </g>
+
+    <!-- Subtitle Category Monospace -->
+    <text x="4" y="44" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="19" font-weight="700" letter-spacing="3.5">GOOGLE NOTEBOOKLM HARVESTER</text>
+    
+    <!-- Description Paragraph -->
+    <text x="4" y="82" fill="#CBD5E1" font-family="'Inter', sans-serif" font-size="15" font-weight="500">1-click audio overviews, video canvas, and studio archives directly inside Discord.</text>
+
+    <!-- Capability Pills Strip (y: 125..175) -->
+    <g transform="translate(0, 122)">
+      <!-- Pill 1: Audio Overviews -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="176" height="46" rx="12" fill="#08142c" stroke="#00F3FF" stroke-width="1.4"/>
+        <text x="20" y="28" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13.5" font-weight="700">🎙️ 320k Audio M4A</text>
+      </g>
+
+      <!-- Pill 2: Video Canvas -->
+      <g transform="translate(190, 0)">
+        <rect x="0" y="0" width="172" height="46" rx="12" fill="#061816" stroke="#39FF14" stroke-width="1.4"/>
+        <text x="20" y="28" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13.5" font-weight="700">🎬 Video Canvas</text>
+      </g>
+
+      <!-- Pill 3: Complete Studio ZIP -->
+      <g transform="translate(376, 0)">
+        <rect x="0" y="0" width="180" height="46" rx="12" fill="#180e2d" stroke="#BC13FE" stroke-width="1.4"/>
+        <text x="20" y="28" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="13.5" font-weight="700">📦 5-Artifact ZIP</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Floating Soundwave Frequency Spectrum -->
+  <g transform="translate(945, 175)">
+    <rect x="0"  y="45" width="5" height="50" rx="2.5" fill="#5865F2" filter="url(#cvGlow)"/>
+    <rect x="10" y="20" width="5" height="75" rx="2.5" fill="#00F3FF" filter="url(#cvGlow)"/>
+    <rect x="20" y="8"  width="5" height="87" rx="2.5" fill="#39FF14" filter="url(#cvGlow)"/>
+    <rect x="30" y="32" width="5" height="63" rx="2.5" fill="#00F3FF"/>
+    <rect x="40" y="52" width="5" height="43" rx="2.5" fill="#BC13FE"/>
+  </g>
+</svg>
