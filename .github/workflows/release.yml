@@ -40,7 +40,7 @@ jobs:
           zip -r release-dist/nocatch-web-dist.zip web/dist/
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             release-dist/*.zip
