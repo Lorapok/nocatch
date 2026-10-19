@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — NoCatch | Lorapok Labs</title>
+  <meta name="description" content="Terms of Service for NoCatch, the Universal Google NotebookLM Harvester and Discord Application developed by Lorapok Labs." />
+  <link rel="icon" type="image/png" href="/assets/nocatch-app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.7);
+      --border: rgba(51, 65, 85, 0.6);
+      --primary: #39FF14;
+      --cyan: #00F3FF;
+      --purple: #BC13FE;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+    header {
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+    .logo-group img {
+      width: 28px;
+      height: 28px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--cyan);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      background: rgba(0, 243, 255, 0.08);
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      background: rgba(0, 243, 255, 0.16);
+      transform: translateY(-1px);
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 3rem 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #FFFFFF 40%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 2rem 0 0.75rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    p, ul {
+      color: #CBD5E1;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    strong {
+      color: #fff;
+    }
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .callout {
+      background: rgba(3, 7, 18, 0.6);
+      border-left: 4px solid var(--cyan);
+      padding: 1rem 1.25rem;
+      border-radius: 0.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #E2E8F0;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      background: #030712;
+      padding: 2rem 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo-group">
+        <img src="/assets/nocatch-logo.svg" alt="NoCatch Logo" />
+        <span>NoCatch</span>
+      </a>
+      <a href="/" class="back-btn">&larr; Back to App</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <span class="badge">Legal &amp; Compliance</span>
+      <h1>Terms of Service</h1>
+      <div class="meta">
+        <strong>Last Updated:</strong> October 19, 2026 &bull; 
+        <strong>Published by:</strong> <a href="https://lorapok.tech" target="_blank" rel="noreferrer">Lorapok Labs</a> &bull; 
+        <strong>Contact:</strong> <a href="mailto:legal@lorapok.tech">legal@lorapok.tech</a>
+      </div>
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using <strong>NoCatch</strong> (<a href="https://nocatch.lorapok.tech">https://nocatch.lorapok.tech</a>), the NoCatch Discord Application, the NoCatch Browser Extension, or the <code>@lorapok/nocatch-core</code> software library, you agree to be bound by these Terms of Service. If you do not agree to these terms, do not access or use the services.</p>
+
+      <h2>2. Description of Service</h2>
+      <p>NoCatch is an open-source utility and media harvester designed to assist users in extracting, downloading, previewing, and archiving their generated content from Google NotebookLM (including Audio Overviews, video canvases, transcripts, study guides, and briefing documents).</p>
+
+      <h2>3. Acceptable Use Policy</h2>
+      <p>You agree to use NoCatch only for lawful purposes and in accordance with these Terms:</p>
+      <ul>
+        <li><strong>Authorized Content Only:</strong> You may only use NoCatch to extract content from notebooks that you own, have generated, or have been granted authorized access to via public or shared links.</li>
+        <li><strong>Intellectual Property Respect:</strong> You agree to respect the copyright, intellectual property rights, and fair-use obligations of any source materials referenced within your Google NotebookLM projects.</li>
+        <li><strong>No Abuse or Scraping Attacks:</strong> You agree not to perform denial-of-service attacks, rate-limit bypassing, automated bulk scraping of unauthorized accounts, or disruptive activities against Google or Lorapok infrastructure.</li>
+      </ul>
+
+      <h2>4. Third-Party Trademarks &amp; Affiliations</h2>
+      <div class="callout">
+        <strong>Disclaimer:</strong> Google NotebookLM is a trademark of Google LLC. Discord is a trademark of Discord Inc. NoCatch is an independent open-source project by Lorapok Labs and is not endorsed by, sponsored by, or affiliated with Google LLC or Discord Inc.
+      </div>
+
+      <h2>5. Discord Application Terms of Use</h2>
+      <p>When interacting with the NoCatch Discord Bot / Application:</p>
+      <ul>
+        <li>You agree to adhere to <a href="https://discord.com/guidelines" target="_blank" rel="noreferrer">Discord's Community Guidelines</a> and <a href="https://discord.com/terms" target="_blank" rel="noreferrer">Discord's Terms of Service</a>.</li>
+        <li>Server administrators are solely responsible for managing permissions, roles, and channel access for the bot within their respective servers.</li>
+        <li>Lorapok Labs reserves the right to restrict or terminate bot access to any user or guild found violating Discord's policies or exploiting the bot.</li>
+      </ul>
+
+      <h2>6. Disclaimer of Warranties</h2>
+      <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">NO CATCH AND ALL ASSOCIATED SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. LORAPOK LABS DOES NOT GUARANTEE UNINTERRUPTED, SECURE, OR ERROR-FREE OPERATION.</p>
+
+      <h2>7. Limitation of Liability</h2>
+      <p style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.02em;">IN NO EVENT SHALL LORAPOK LABS, ITS DIRECTORS, EMPLOYEES, OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF OR INABILITY TO USE THE SERVICES.</p>
+
+      <h2>8. Open Source License</h2>
+      <p>The underlying source code of NoCatch is licensed under the permissive <a href="https://github.com/Lorapok/nocatch/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>. You are free to inspect, audit, fork, and self-host the software in accordance with the license conditions.</p>
+
+      <h2>9. Contact Information</h2>
+      <p>For questions or legal inquiries regarding these Terms of Service, contact:</p>
+      <ul>
+        <li>Email: <a href="mailto:legal@lorapok.tech">legal@lorapok.tech</a></li>
+        <li>Website: <a href="https://lorapok.tech" target="_blank" rel="noreferrer">https://lorapok.tech</a></li>
+        <li>Repository: <a href="https://github.com/Lorapok/nocatch" target="_blank" rel="noreferrer">https://github.com/Lorapok/nocatch</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="https://github.com/Lorapok/nocatch" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://lorapok.tech" target="_blank" rel="noreferrer">Lorapok Labs</a>
+    </div>
+    <p>&copy; 2026 Lorapok Labs. All rights reserved.</p>
+  </footer>
+</body>
+</html>

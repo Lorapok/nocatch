@@ -1517,8 +1517,8 @@ Mission Control: https://lorapok.tech
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-400">
             <a href="https://nocatch.lorapok.tech" className="hover:text-white transition">nocatch.lorapok.tech</a>
-            <a href="https://github.com/Lorapok/nocatch/blob/main/docs/PRIVACY.md" target="_blank" rel="noreferrer" className="hover:text-[#00F3FF] transition">Privacy Policy</a>
-            <a href="https://github.com/Lorapok/nocatch/blob/main/docs/TERMS.md" target="_blank" rel="noreferrer" className="hover:text-[#39FF14] transition">Terms of Service</a>
+            <a href="/privacy" className="hover:text-[#00F3FF] transition">Privacy Policy</a>
+            <a href="/terms" className="hover:text-[#39FF14] transition">Terms of Service</a>
             <a href="https://github.com/Lorapok/nocatch" target="_blank" rel="noreferrer" className="hover:text-white transition">GitHub</a>
             <a href="https://lorapok.tech" target="_blank" rel="noreferrer" className="hover:text-white transition">Mission Control</a>
           </div>
