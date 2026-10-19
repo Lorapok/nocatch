@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && wrangler pages functions build --outdir dist && mv dist/index.js dist/_worker.js",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
