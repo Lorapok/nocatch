@@ -6,6 +6,7 @@
   "main": "src/bot.js",
   "scripts": {
     "start": "node src/bot.js",
+    "register": "node src/register-commands.js",
     "test-link": "node test/test-discord-link.js"
   },
   "dependencies": {

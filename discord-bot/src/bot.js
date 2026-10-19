@@ -12,6 +12,7 @@ import {
 } from 'discord.js';
 import dotenv from 'dotenv';
 import { NoCatchExtractor, NOTEBOOK_REGEX } from '@lorapok/nocatch-core';
+import { registerCommands } from './register-commands.js';
 
 dotenv.config();
 
@@ -127,9 +128,16 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
-client.once('ready', () => {
+client.once('ready', async () => {
   console.log(`⚡ [NoCatch Discord Bot] Online as ${client.user.tag}`);
   console.log(`   Connected to ${client.guilds.cache.size} guilds.`);
+  console.log(`   Server Invite Link: https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=277025770560&integration_type=0&scope=bot+applications.commands`);
+  console.log(`   User App Install:   https://discord.com/oauth2/authorize?client_id=${client.user.id}&integration_type=1&scope=applications.commands`);
+  try {
+    await registerCommands();
+  } catch (err) {
+    console.warn('[NoCatch Discord] Slash command registration note:', err.message);
+  }
 });
 
 export async function startBot(token = process.env.DISCORD_BOT_TOKEN) {
