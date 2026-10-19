@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import JSZip from 'jszip';
 import {
   Download,
   Sparkles,
@@ -26,10 +27,13 @@ import {
   FolderDown,
   Info,
   Video,
-  Film
+  Film,
+  FileCode,
+  PackageCheck
 } from 'lucide-react';
 
 const DEMO_URL = 'https://notebook.google.com/notebook/8b88ac32-9785-489b-a224-9d95864fddca/artifact/48e08424-d530-4d98-990c-a08dce8e015d';
+const DEMO_SHARE_URL = 'https://notebook.google.com/notebook/8b88ac32-9785-489b-a224-9d95864fddca?utm_source=nlmm_share';
 
 export default function App() {
   const [inputUrl, setInputUrl] = useState('');
@@ -41,6 +45,7 @@ export default function App() {
   const [logs, setLogs] = useState([]);
   const [copied, setCopied] = useState(false);
   const [playerMode, setPlayerMode] = useState('audio'); // audio | video
+  const [bundleProgress, setBundleProgress] = useState(null);
   
   // Audio Player State
   const [isPlaying, setIsPlaying] = useState(false);
@@ -249,20 +254,96 @@ export default function App() {
 
   const handleDownloadBundle = async () => {
     if (!artifact) return;
-    const res = await fetch('/api/bundle', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: artifact.canonicalUrl }),
-    });
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${artifact.title.replace(/\s+/g, '_')}_NoCatch_Bundle.zip`;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
+    try {
+      setBundleProgress('Initializing Studio Bundle...');
+      const zip = new JSZip();
+      const safeTitle = (artifact.title || 'Studio_Artifact')
+        .replace(/[<>:"/\\|?*\x00-\x1F]/g, '_')
+        .replace(/\s+/g, '_');
+
+      // 1. Fetch Audio (.m4a)
+      if (artifact.audio?.primaryStreamUrl || artifact.audio?.directDownloadUrl) {
+        setBundleProgress('Fetching Audio Podcast (.m4a)...');
+        const audioUrl = `/api/stream?url=${encodeURIComponent(artifact.audio.primaryStreamUrl || artifact.audio.directDownloadUrl)}`;
+        const audioRes = await fetch(audioUrl);
+        if (audioRes.ok) {
+          const audioBlob = await audioRes.blob();
+          zip.file(`${safeTitle}_Audio_Overview.m4a`, audioBlob);
+        }
+      }
+
+      // 2. Fetch Video (.mp4)
+      if (artifact.video?.streamUrl) {
+        setBundleProgress('Fetching Video Stream (.mp4)...');
+        const videoUrl = `/api/stream?url=${encodeURIComponent(artifact.video.streamUrl)}`;
+        const videoRes = await fetch(videoUrl);
+        if (videoRes.ok) {
+          const videoBlob = await videoRes.blob();
+          zip.file(`${safeTitle}_Video_Track.mp4`, videoBlob);
+        }
+      }
+
+      // 3. Add Study Guide (.md)
+      setBundleProgress('Adding Study Guide (.md)...');
+      const mdContent = artifact.textContent 
+        ? `# ${artifact.title}\n\n${artifact.textContent}`
+        : `# ${artifact.title}\n\n## Episode: ${artifact.audio?.episodeName || 'Podcast Episode'}\n\nDuration: ${artifact.audio?.durationFormatted || 'N/A'}\n\n*Harvested via NoCatch by Lorapok Labs.*\n\n## Sources Cited (${artifact.sourceCount || 0})\n${(artifact.sourceIds || []).map((s, i) => `${i + 1}. Source ID: ${s}`).join('\n')}\n`;
+      zip.file(`${safeTitle}_Study_Guide.md`, mdContent);
+
+      // 4. Add Sources Manifest (.json)
+      setBundleProgress('Adding Sources Manifest (.json)...');
+      zip.file(`${safeTitle}_Sources_Manifest.json`, JSON.stringify(artifact, null, 2));
+
+      // 5. Add README.txt
+      const readme = `======================================================================
+NoCatch Studio Master Archive
+A Product of Lorapok Labs | https://nocatch.lorapok.tech
+======================================================================
+
+Notebook Title: ${artifact.title}
+Episode: ${artifact.audio?.episodeName || 'N/A'}
+Duration: ${artifact.audio?.durationFormatted || 'N/A'}
+Sources Cited: ${artifact.sourceCount || 0}
+Canonical URL: ${artifact.canonicalUrl}
+Harvested At: ${artifact.extractedAt || new Date().toISOString()}
+
+Archive Contents:
+1. ${safeTitle}_Audio_Overview.m4a    - High-bitrate 128kbps stereo AAC podcast
+${artifact.video ? `2. ${safeTitle}_Video_Track.mp4       - Google Video Canvas stream (AVC1 / H.264)\n` : ''}3. ${safeTitle}_Study_Guide.md       - Synthesized notes & briefing doc
+4. ${safeTitle}_Sources_Manifest.json  - Machine-readable sources & stream metadata
+5. README.txt                         - Archive documentation
+
+Powered by NoCatch Neural Pipeline (Lorapok Labs).
+GitHub: https://github.com/Lorapok/nocatch
+Mission Control: https://lorapok.tech
+`;
+      zip.file('README.txt', readme);
+
+      // 6. Generate ZIP
+      setBundleProgress('Compressing archive...');
+      const zipBlob = await zip.generateAsync(
+        { type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } },
+        (meta) => {
+          setBundleProgress(`Compressing: ${Math.round(meta.percent)}%`);
+        }
+      );
+
+      const blobUrl = window.URL.createObjectURL(zipBlob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = `${safeTitle}_Studio_Bundle.zip`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(blobUrl);
+      document.body.removeChild(a);
+
+      setBundleProgress(null);
+      addLog(`Master Studio ZIP bundle generated & downloaded: ${safeTitle}_Studio_Bundle.zip`);
+    } catch (err) {
+      console.error('Bundle error:', err);
+      setBundleProgress(null);
+      alert('Failed to package ZIP bundle: ' + err.message);
+    }
   };
 
   const copyToClipboard = (text) => {
@@ -428,19 +509,32 @@ export default function App() {
               </div>
 
               {/* Demo Helper Pill */}
-              <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 pt-1">
+              <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 pt-1 gap-2">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[#39FF14]" /> Direct Google CDN resolution (100% loss-free)
                 </span>
-                <button
-                  onClick={() => {
-                    setInputUrl(DEMO_URL);
-                    handleExtract(DEMO_URL);
-                  }}
-                  className="text-[#00F3FF] hover:underline flex items-center gap-1"
-                >
-                  <Sparkles className="w-3.5 h-3.5" /> Load Test Audio Overview (32:50 Episode)
-                </button>
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInputUrl(DEMO_SHARE_URL);
+                      handleExtract(DEMO_SHARE_URL);
+                    }}
+                    className="text-[#39FF14] hover:underline flex items-center gap-1 font-mono text-[11px] bg-[#39FF14]/10 px-2 py-1 rounded-lg border border-[#39FF14]/30"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" /> Test Shared Notebook Link (?utm_source=nlmm_share)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInputUrl(DEMO_URL);
+                      handleExtract(DEMO_URL);
+                    }}
+                    className="text-[#00F3FF] hover:underline flex items-center gap-1 font-mono text-[11px] bg-[#00F3FF]/10 px-2 py-1 rounded-lg border border-[#00F3FF]/30"
+                  >
+                    <Headphones className="w-3.5 h-3.5" /> Direct Artifact Link
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -564,9 +658,20 @@ export default function App() {
                     )}
                     <button
                       onClick={handleDownloadBundle}
-                      className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2"
+                      disabled={bundleProgress !== null}
+                      className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2 disabled:opacity-60"
                     >
-                      <Archive className="w-4 h-4 text-[#00F3FF]" /> Download All (ZIP)
+                      {bundleProgress ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-[#00F3FF] border-t-transparent rounded-full animate-spin" />
+                          <span className="text-[#00F3FF] font-mono text-xs">{bundleProgress}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Archive className="w-4 h-4 text-[#00F3FF]" />
+                          <span>Download All (ZIP)</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -720,66 +825,168 @@ export default function App() {
               </div>
             ) : null}
 
-            {/* Generated Written Artifacts Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="glass-panel rounded-2xl p-6 border border-slate-800 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-white font-semibold">
-                    <FileText className="w-4 h-4 text-[#00F3FF]" />
-                    <span>Study Guide & Briefing Doc</span>
-                  </div>
-                  <span className="text-xs px-2 py-0.5 rounded bg-[#00F3FF]/10 text-[#00F3FF] border border-[#00F3FF]/30">
-                    Markdown (.md)
-                  </span>
+            {/* Google NotebookLM Studio All Files Catalog */}
+            <div className="space-y-4 pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <PackageCheck className="w-5 h-5 text-[#39FF14]" />
+                  <h3 className="text-xl font-bold text-white tracking-tight">Studio Generated Files (All 5 Assets)</h3>
                 </div>
-                <p className="text-xs text-slate-400">
-                  Full synthesized knowledge outline derived from the {artifact.sourceCount} user sources.
-                </p>
-                <div className="pt-2 flex items-center gap-2">
+                <span className="text-xs font-mono text-[#39FF14] bg-[#39FF14]/10 border border-[#39FF14]/30 px-3 py-1 rounded-full w-fit">
+                  100% Downloadable • Bit-Perfect
+                </span>
+              </div>
+
+              {/* Master Bundle Hero Card */}
+              <div className="glass-panel-glow rounded-2xl p-6 border border-[#39FF14]/40 relative overflow-hidden flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-gradient-to-r from-slate-900/90 via-black to-slate-900/90 shadow-[0_0_25px_rgba(57,255,20,0.15)]">
+                <div className="space-y-1.5 max-w-xl">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 text-[11px] font-mono font-bold rounded bg-[#39FF14]/20 text-[#39FF14] border border-[#39FF14]/40 flex items-center gap-1">
+                      <Archive className="w-3.5 h-3.5" /> MASTER ZIP ARCHIVE
+                    </span>
+                    <span className="text-base font-bold text-white">Complete Studio Package</span>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Downloads all studio files in one bundle: Audio Overview (.m4a), Google Video Track (.mp4), Briefing Document (.md), Sources & Metadata (.json), and Lorapok documentation.
+                  </p>
+                </div>
+                <button
+                  onClick={handleDownloadBundle}
+                  disabled={bundleProgress !== null}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#00F3FF] via-[#39FF14] to-[#39FF14] text-black font-bold text-xs sm:text-sm tracking-tight shadow-[0_0_20px_rgba(57,255,20,0.35)] hover:shadow-[0_0_25px_rgba(57,255,20,0.5)] transition flex items-center justify-center gap-2 shrink-0 disabled:opacity-60"
+                >
+                  {bundleProgress ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      <span className="font-mono">{bundleProgress}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Archive className="w-4 h-4 fill-current" />
+                      <span>Download Studio Bundle (ZIP)</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* 4 Individual Studio Assets Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* 1. Audio Overview */}
+                <div className="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between hover:border-[#39FF14]/40 transition">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-semibold text-sm">
+                        <Headphones className="w-4 h-4 text-[#39FF14]" />
+                        <span>1. Audio Overview Podcast</span>
+                      </div>
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30">
+                        .M4A / AAC
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400">
+                      Original 128kbps stereo AAC podcast audio • {artifact.audio?.durationFormatted || '32:50'}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleDownloadFile(artifact.audio?.directDownloadUrl || artifact.audio?.primaryStreamUrl, artifact.audio?.filename || 'audio.m4a')}
+                    className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-[#39FF14]/50 text-xs font-semibold text-white transition flex items-center justify-center gap-2"
+                  >
+                    <Download className="w-3.5 h-3.5 text-[#39FF14]" /> Download .M4A Audio
+                  </button>
+                </div>
+
+                {/* 2. Video Canvas Stream */}
+                <div className="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between hover:border-[#00F3FF]/40 transition">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-semibold text-sm">
+                        <Film className="w-4 h-4 text-[#00F3FF]" />
+                        <span>2. Google Video Canvas</span>
+                      </div>
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#00F3FF]/15 text-[#00F3FF] border border-[#00F3FF]/30">
+                        .MP4 / AVC1
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400">
+                      {artifact.video ? `Google Video Canvas stream • ${artifact.video.quality}` : 'Internal DASH video canvas track'}
+                    </p>
+                  </div>
+                  {artifact.video ? (
+                    <button
+                      onClick={() => handleDownloadFile(artifact.video.streamUrl, artifact.video.filename)}
+                      className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-[#00F3FF]/50 text-xs font-semibold text-white transition flex items-center justify-center gap-2"
+                    >
+                      <Download className="w-3.5 h-3.5 text-[#00F3FF]" /> Download .MP4 Video
+                    </button>
+                  ) : (
+                    <div className="text-[11px] text-slate-500 font-mono text-center py-2 bg-slate-900/60 rounded-xl">
+                      Audio-only artifact (No video track muxed)
+                    </div>
+                  )}
+                </div>
+
+                {/* 3. Study Guide & Briefing Doc */}
+                <div className="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between hover:border-emerald-500/40 transition">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-semibold text-sm">
+                        <FileText className="w-4 h-4 text-emerald-400" />
+                        <span>3. Study Guide & Briefing Doc</span>
+                      </div>
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                        .MD
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400">
+                      Synthesized knowledge briefing and outline derived from {artifact.sourceCount} user sources.
+                    </p>
+                  </div>
                   <button
                     onClick={() => {
-                      const blob = new Blob([artifact.textContent || `# ${artifact.title}\nSynthesized notes`], { type: 'text/markdown' });
+                      const md = artifact.textContent || `# ${artifact.title}\n\nEpisode: ${artifact.audio?.episodeName || ''}\nDuration: ${artifact.audio?.durationFormatted || ''}\n\n*Harvested via NoCatch by Lorapok Labs*`;
+                      const blob = new Blob([md], { type: 'text/markdown' });
                       const url = URL.createObjectURL(blob);
                       const a = document.createElement('a');
                       a.href = url;
-                      a.download = `${artifact.title.replace(/\s+/g, '_')}_notes.md`;
+                      a.download = `${artifact.title.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').replace(/\s+/g, '_')}_notes.md`;
                       a.click();
                       URL.revokeObjectURL(url);
                     }}
-                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white transition flex items-center gap-1.5"
+                    className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-xs font-semibold text-white transition flex items-center justify-center gap-2"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#00F3FF]" /> Download .MD
+                    <Download className="w-3.5 h-3.5 text-emerald-400" /> Download .MD Notes
                   </button>
                 </div>
-              </div>
 
-              <div className="glass-panel rounded-2xl p-6 border border-slate-800 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-white font-semibold">
-                    <Layers className="w-4 h-4 text-[#BC13FE]" />
-                    <span>Sources & Metadata Manifest</span>
+                {/* 4. Sources Manifest */}
+                <div className="glass-panel rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between hover:border-[#BC13FE]/40 transition">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-semibold text-sm">
+                        <Layers className="w-4 h-4 text-[#BC13FE]" />
+                        <span>4. Sources Manifest & Metadata</span>
+                      </div>
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#BC13FE]/15 text-[#BC13FE] border border-[#BC13FE]/30">
+                        .JSON
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400">
+                      Full citation catalog ({artifact.sourceCount} sources), CDN stream links, and timestamps.
+                    </p>
                   </div>
-                  <span className="text-xs px-2 py-0.5 rounded bg-[#BC13FE]/10 text-[#BC13FE] border border-[#BC13FE]/30">
-                    JSON Schema
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400">
-                  Contains all citation IDs, raw duration seconds, Google CDN stream links, and timestamps.
-                </p>
-                <div className="pt-2 flex items-center gap-2">
                   <button
                     onClick={() => {
                       const blob = new Blob([JSON.stringify(artifact, null, 2)], { type: 'application/json' });
                       const url = URL.createObjectURL(blob);
                       const a = document.createElement('a');
                       a.href = url;
-                      a.download = `${artifact.title.replace(/\s+/g, '_')}_metadata.json`;
+                      a.download = `${artifact.title.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').replace(/\s+/g, '_')}_metadata.json`;
                       a.click();
                       URL.revokeObjectURL(url);
                     }}
-                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white transition flex items-center gap-1.5"
+                    className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-[#BC13FE]/50 text-xs font-semibold text-white transition flex items-center justify-center gap-2"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#BC13FE]" /> Download Manifest
+                    <Download className="w-3.5 h-3.5 text-[#BC13FE]" /> Download .JSON Manifest
                   </button>
                 </div>
               </div>

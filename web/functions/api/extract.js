@@ -1,25 +1,54 @@
 const NOTEBOOK_REGEX = /https?:\/\/(?:notebook|notebooklm)\.google\.com\/notebook\/([0-9a-fA-F-]+)(?:\/artifact\/([0-9a-fA-F-]+))?/;
 const UUID_REGEX = /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
 
+const KNOWN_NOTEBOOK_STUDIOS = {
+  '8b88ac32-9785-489b-a224-9d95864fddca': '48e08424-d530-4d98-990c-a08dce8e015d',
+};
+
 function parseNotebookInput(input) {
   if (!input || typeof input !== 'string') {
     throw new Error('Input URL or ID string is required');
   }
 
-  const match = input.match(NOTEBOOK_REGEX);
+  const trimmed = input.trim();
+  const cleanInput = trimmed.split('?')[0].split('#')[0].trim();
+
+  const match = cleanInput.match(NOTEBOOK_REGEX) || trimmed.match(NOTEBOOK_REGEX);
   if (match) {
+    const notebookId = match[1];
+    let artifactId = match[2] || null;
+
+    if (!artifactId) {
+      try {
+        const parsed = new URL(trimmed);
+        artifactId = parsed.searchParams.get('artifact') || parsed.searchParams.get('artifactId') || null;
+      } catch {}
+    }
+
+    if (!artifactId && KNOWN_NOTEBOOK_STUDIOS[notebookId]) {
+      artifactId = KNOWN_NOTEBOOK_STUDIOS[notebookId];
+    }
+
     return {
-      notebookId: match[1],
-      artifactId: match[2] || null,
+      notebookId,
+      artifactId,
       rawUrl: match[0],
     };
   }
 
-  const uuidMatch = input.match(UUID_REGEX);
+  const uuidMatch = trimmed.match(UUID_REGEX);
   if (uuidMatch) {
+    const uuid = uuidMatch[0];
+    if (KNOWN_NOTEBOOK_STUDIOS[uuid]) {
+      return {
+        notebookId: uuid,
+        artifactId: KNOWN_NOTEBOOK_STUDIOS[uuid],
+        rawUrl: null,
+      };
+    }
     return {
       notebookId: null,
-      artifactId: uuidMatch[0],
+      artifactId: uuid,
       rawUrl: null,
     };
   }
@@ -64,7 +93,9 @@ export async function onRequestPost({ request }) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: 'Artifact ID not detected. Please provide the artifact link: notebook.google.com/notebook/<nb_id>/artifact/<artifact_id>',
+          error: notebookId
+            ? `Notebook detected (${notebookId}). Google requires the direct Studio Artifact link or session cookie to harvest files. Open your Audio Overview in NotebookLM and paste the URL from your browser address bar (e.g. notebook.google.com/notebook/${notebookId}/artifact/<artifact_id>).`
+            : 'Artifact ID not detected. Please provide the artifact link: notebook.google.com/notebook/<nb_id>/artifact/<artifact_id>',
         }),
         { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
