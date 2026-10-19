@@ -1,17 +1,18 @@
 # 🚀 Discord Developer Portal Automation & Hand-off Roadmap
-### *NoCatch by Lorapok Labs*
+### *Lorapok Bot — Lorapok Labs Product Ecosystem*
 
 ---
 
 ## 📌 Executive Summary & Current Status
 
-This document records the exact state of the **NoCatch** ecosystem, the website runtime resolution, and the step-by-step checklist to complete the Discord Bot setup via Browser MCP on `https://discord.com/developers/applications/1561581247208099843/bot`.
+This document records the exact state of the **Lorapok Bot** ecosystem, the website runtime resolution, and the step-by-step checklist to complete the Discord Bot setup on `https://discord.com/developers/applications/1561581247208099843/bot`.
 
 | Component | Status | URL / Target | Notes |
 |---|---|---|---|
 | **Website Frontend** | 🟢 100% Operational | [nocatch.lorapok.tech](https://nocatch.lorapok.tech/) | React 19 + Vite 8 + Tailwind CSS |
 | **Edge API Functions** | 🟢 100% Operational | `/api/extract`, `/api/health`, `/api/stream` | Cloudflare Pages `_worker.js` |
-| **Discord Bot Code** | 🟢 Ready | `discord-bot/src/bot.js` | Discord.js v14 Gateway Client |
+| **Lorapok Bot Code** | 🟢 Synced & Ready | `discord-bot/src/bot.js` | Discord.js v14 Gateway Client (`@lorapok/bot` v2.0) |
+| **Ecosystem Commands** | 🟢 6 Commands Ready | `/products`, `/nocatch`, `/loragent`, `/player`, `/about`, `/nocatch-audio` | Registered globally via REST API v10 |
 | **Discord Bot Portal** | 🟡 Pending Toggles | [Discord Dev Portal](https://discord.com/developers/applications/1561581247208099843/bot) | Requires Privileged Intents & Permissions |
 
 ---
@@ -69,7 +70,14 @@ When automating `https://discord.com/developers/applications/1561581247208099843
 
 ## 📋 3. Step-by-Step Procedure to Continue & Complete
 
-When resuming on `https://discord.com/developers/applications/1561581247208099843/bot`:
+### Step 0: Rename Application & Sync Lorapok Labs Branding (`/information`)
+Navigate to `https://discord.com/developers/applications/1561581247208099843/information`:
+1. **Name**: Change from `NoCatch` to **`Lorapok`** (or **`Lorapok Labs`**).
+2. **App Icon**: Ensure `assets/branding/nocatch-discord-bot-avatar.png` (or `loragent-logo-mark.png`) is selected.
+3. **Description**:
+   > ⚡ Official Discord Application for Lorapok Labs (lorapok.tech) — Empowering communities with NoCatch (Google NotebookLM Media Harvester), Loragent (Autonomous AI Multi-Agent Network), Lorapok Player, and developer tools.
+4. **Tags**: `lorapok`, `loragent`, `nocatch`, `notebooklm`, `audio`, `ai`
+5. Click **Save Changes**.
 
 ### Step 1: Enable Privileged Gateway Intents (`/bot`)
 1. On the **Bot** page, scroll down to **Privileged Gateway Intents**.

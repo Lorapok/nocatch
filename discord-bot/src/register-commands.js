@@ -10,7 +10,7 @@ const GUILD_ID = process.env.DISCORD_GUILD_ID; // Optional: specify for instant 
 export const commands = [
   new SlashCommandBuilder()
     .setName('nocatch')
-    .setDescription('⚡ Harvest and extract audio/transcripts from Google NotebookLM')
+    .setDescription('⚡ Harvest & extract audio/transcripts from Google NotebookLM')
     .addStringOption((option) =>
       option
         .setName('url')
@@ -26,6 +26,18 @@ export const commands = [
         .setDescription('Google NotebookLM notebook or artifact share URL')
         .setRequired(true)
     ),
+  new SlashCommandBuilder()
+    .setName('products')
+    .setDescription('🚀 Explore the complete Lorapok Labs ecosystem & live products'),
+  new SlashCommandBuilder()
+    .setName('loragent')
+    .setDescription('🦾 Query Loragent — Autonomous AI Multi-Agent Network & Skills'),
+  new SlashCommandBuilder()
+    .setName('player')
+    .setDescription('🎧 Open Lorapok Media Player with soundwave sensory visualization'),
+  new SlashCommandBuilder()
+    .setName('about')
+    .setDescription('🌐 About Lorapok Labs, mission, GitHub repositories, and links'),
 ].map((cmd) => cmd.toJSON());
 
 export async function registerCommands(token = process.env.DISCORD_BOT_TOKEN) {

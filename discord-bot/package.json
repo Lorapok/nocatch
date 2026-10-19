@@ -1,12 +1,13 @@
 {
-  "name": "@lorapok/nocatch-discord-bot",
-  "version": "1.0.0",
-  "description": "Discord Application for NoCatch by Lorapok Labs",
+  "name": "@lorapok/bot",
+  "version": "2.0.0",
+  "description": "Official Discord Bot for Lorapok Labs and its Product Ecosystem (NoCatch, Loragent, Lorapok Player)",
   "type": "module",
   "main": "src/bot.js",
   "scripts": {
     "start": "node src/bot.js",
     "register": "node src/register-commands.js",
+    "sync-profile": "node src/sync-profile.js",
     "test-link": "node test/test-discord-link.js"
   },
   "dependencies": {
