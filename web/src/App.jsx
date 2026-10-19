@@ -24,7 +24,9 @@ import {
   ShieldCheck,
   Disc,
   FolderDown,
-  Info
+  Info,
+  Video,
+  Film
 } from 'lucide-react';
 
 const DEMO_URL = 'https://notebook.google.com/notebook/8b88ac32-9785-489b-a224-9d95864fddca/artifact/48e08424-d530-4d98-990c-a08dce8e015d';
@@ -38,6 +40,7 @@ export default function App() {
   const [artifact, setArtifact] = useState(null);
   const [logs, setLogs] = useState([]);
   const [copied, setCopied] = useState(false);
+  const [playerMode, setPlayerMode] = useState('audio'); // audio | video
   
   // Audio Player State
   const [isPlaying, setIsPlaying] = useState(false);
@@ -219,6 +222,9 @@ export default function App() {
       if (json.data.audio) {
         addLog(`Located High-Bitrate AAC stream: ${json.data.audio.durationFormatted}`);
         addLog(`Audio Episode: "${json.data.audio.episodeName}" (${json.data.sourceCount} sources cited)`);
+      }
+      if (json.data.video) {
+        addLog(`Located Google Video Canvas track: ${json.data.video.quality} (${json.data.video.codec})`);
       }
       addLog('Extraction verified. Ready for immediate playback and download.');
 
@@ -519,6 +525,11 @@ export default function App() {
                       <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#39FF14]/15 text-[#39FF14] border border-[#39FF14]/30 flex items-center gap-1.5">
                         <Headphones className="w-3.5 h-3.5" /> Audio Overview (Podcast)
                       </span>
+                      {artifact.video && (
+                        <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#00F3FF]/15 text-[#00F3FF] border border-[#00F3FF]/30 flex items-center gap-1.5">
+                          <Video className="w-3.5 h-3.5" /> Video Track Detected
+                        </span>
+                      )}
                       <span className="px-2.5 py-1 text-xs font-mono rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
                         {artifact.audio.quality}
                       </span>
@@ -539,101 +550,173 @@ export default function App() {
                   <div className="flex flex-wrap items-center gap-3">
                     <button
                       onClick={() => handleDownloadFile(artifact.audio.directDownloadUrl || artifact.audio.primaryStreamUrl, artifact.audio.filename)}
-                      className="px-5 py-3 rounded-xl bg-[#39FF14] hover:bg-[#39FF14]/90 text-black font-bold text-sm tracking-tight shadow-[0_0_20px_rgba(57,255,20,0.4)] transition flex items-center gap-2"
+                      className="px-4 py-2.5 rounded-xl bg-[#39FF14] hover:bg-[#39FF14]/90 text-black font-bold text-xs sm:text-sm tracking-tight shadow-[0_0_20px_rgba(57,255,20,0.4)] transition flex items-center gap-2"
                     >
                       <Download className="w-4 h-4" /> Download Audio (M4A)
                     </button>
+                    {artifact.video && (
+                      <button
+                        onClick={() => handleDownloadFile(artifact.video.streamUrl, artifact.video.filename)}
+                        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00F3FF] to-cyan-400 hover:opacity-90 text-black font-bold text-xs sm:text-sm tracking-tight shadow-[0_0_20px_rgba(0,243,255,0.4)] transition flex items-center gap-2"
+                      >
+                        <Video className="w-4 h-4" /> Download Video (MP4)
+                      </button>
+                    )}
                     <button
                       onClick={handleDownloadBundle}
-                      className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold text-sm transition flex items-center gap-2"
+                      className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2"
                     >
                       <Archive className="w-4 h-4 text-[#00F3FF]" /> Download All (ZIP)
                     </button>
                   </div>
                 </div>
 
-                {/* Cyber Audio Player */}
-                <div className="rounded-2xl bg-black/60 border border-slate-800 p-5 space-y-4">
-                  <audio
-                    key={artifact.artifactId}
-                    ref={audioRef}
-                    src={`/api/stream?url=${encodeURIComponent(artifact.audio.primaryStreamUrl || artifact.audio.directDownloadUrl)}`}
-                    preload="auto"
-                  />
+                {/* Media Player Mode Tabs */}
+                {artifact.video && (
+                  <div className="flex items-center gap-2 mb-4">
+                    <button
+                      onClick={() => setPlayerMode('audio')}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
+                        playerMode === 'audio'
+                          ? 'bg-[#39FF14]/20 text-[#39FF14] border border-[#39FF14]/40 shadow-[0_0_10px_rgba(57,255,20,0.2)]'
+                          : 'text-slate-400 hover:text-white bg-slate-900 border border-slate-800'
+                      }`}
+                    >
+                      <Headphones className="w-3.5 h-3.5" /> Waveform Audio Player
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (isPlaying && audioRef.current) {
+                          audioRef.current.pause();
+                          setIsPlaying(false);
+                        }
+                        setPlayerMode('video');
+                      }}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
+                        playerMode === 'video'
+                          ? 'bg-[#00F3FF]/20 text-[#00F3FF] border border-[#00F3FF]/40 shadow-[0_0_10px_rgba(0,243,255,0.2)]'
+                          : 'text-slate-400 hover:text-white bg-slate-900 border border-slate-800'
+                      }`}
+                    >
+                      <Video className="w-3.5 h-3.5" /> Google Video Canvas (MP4)
+                    </button>
+                  </div>
+                )}
 
-                  {/* Live Waveform Scrubber */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                      <span>{formatTime(currentTime)}</span>
-                      <span className="text-slate-500">Live Stream Audio</span>
-                      <span>{formatTime(duration || artifact.audio.durationSeconds)}</span>
+                {/* Video Player Display */}
+                {playerMode === 'video' && artifact.video ? (
+                  <div className="rounded-2xl bg-black/80 border border-[#00F3FF]/30 p-5 space-y-4 shadow-[0_0_20px_rgba(0,243,255,0.15)]">
+                    <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-3">
+                      <div className="flex items-center gap-2 text-[#00F3FF] font-semibold">
+                        <Film className="w-4 h-4 text-[#00F3FF]" />
+                        <span>Google Video Stream (AVC1 / H.264 @ 30fps)</span>
+                      </div>
+                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                        {artifact.video.quality}
+                      </span>
                     </div>
 
-                    <input
-                      type="range"
-                      min="0"
-                      max={duration || artifact.audio.durationSeconds}
-                      value={currentTime}
-                      onChange={handleSeek}
-                      className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#39FF14]"
-                    />
+                    <div className="relative rounded-2xl overflow-hidden aspect-video max-w-2xl mx-auto bg-black flex items-center justify-center border border-slate-700 shadow-2xl">
+                      <video
+                        key={artifact.artifactId + '_video'}
+                        src={`/api/stream?url=${encodeURIComponent(artifact.video.streamUrl)}`}
+                        controls
+                        className="w-full h-full object-contain"
+                        poster="/assets/nocatch-logo.svg"
+                      />
+                    </div>
+
+                    <div className="text-xs text-slate-400 font-mono flex items-start gap-2 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+                      <Info className="w-4 h-4 text-[#00F3FF] shrink-0 mt-0.5" />
+                      <span>
+                        <strong className="text-white">Video Track Architecture:</strong> Google NotebookLM generates 128kbps stereo AAC for listening, and simultaneously muxes an internal 320x240 AVC1 Google Video stream for DASH players. NoCatch provides access to both the pure high-bitrate audio and the raw video track.
+                      </span>
+                    </div>
                   </div>
+                ) : (
+                  /* Cyber Audio Player */
+                  <div className="rounded-2xl bg-black/60 border border-slate-800 p-5 space-y-4">
+                    <audio
+                      key={artifact.artifactId}
+                      ref={audioRef}
+                      src={`/api/stream?url=${encodeURIComponent(artifact.audio.primaryStreamUrl || artifact.audio.directDownloadUrl)}`}
+                      preload="auto"
+                    />
 
-                  {/* Player Controls Bar */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={togglePlay}
-                        className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00F3FF] to-[#39FF14] text-black flex items-center justify-center shadow-[0_0_15px_rgba(57,255,20,0.3)] hover:scale-105 transition"
-                      >
-                        {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                      </button>
+                    {/* Live Waveform Scrubber */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>{formatTime(currentTime)}</span>
+                        <span className="text-slate-500">Live Stream Audio</span>
+                        <span>{formatTime(duration || artifact.audio.durationSeconds)}</span>
+                      </div>
 
-                      <button
-                        onClick={() => {
-                          if (audioRef.current) {
-                            audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10);
-                          }
-                        }}
-                        className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
-                        title="Rewind 10s"
-                      >
-                        <RotateCcw className="w-4 h-4" />
-                      </button>
+                      <input
+                        type="range"
+                        min="0"
+                        max={duration || artifact.audio.durationSeconds}
+                        value={currentTime}
+                        onChange={handleSeek}
+                        className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#39FF14]"
+                      />
+                    </div>
 
-                      <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs font-mono">
-                        {[0.75, 1, 1.25, 1.5, 2].map((s) => (
-                          <button
-                            key={s}
-                            onClick={() => handleSpeedChange(s)}
-                            className={`px-2 py-0.5 rounded transition ${
-                              playbackRate === s ? 'bg-[#39FF14] text-black font-bold' : 'text-slate-400 hover:text-white'
-                            }`}
-                          >
-                            {s}x
-                          </button>
-                        ))}
+                    {/* Player Controls Bar */}
+                    <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={togglePlay}
+                          className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00F3FF] to-[#39FF14] text-black flex items-center justify-center shadow-[0_0_15px_rgba(57,255,20,0.3)] hover:scale-105 transition"
+                        >
+                          {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            if (audioRef.current) {
+                              audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10);
+                            }
+                          }}
+                          className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
+                          title="Rewind 10s"
+                        >
+                          <RotateCcw className="w-4 h-4" />
+                        </button>
+
+                        <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs font-mono">
+                          {[0.75, 1, 1.25, 1.5, 2].map((s) => (
+                            <button
+                              key={s}
+                              onClick={() => handleSpeedChange(s)}
+                              className={`px-2 py-0.5 rounded transition ${
+                                playbackRate === s ? 'bg-[#39FF14] text-black font-bold' : 'text-slate-400 hover:text-white'
+                              }`}
+                            >
+                              {s}x
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={toggleMute}
+                          className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
+                        >
+                          {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+                        </button>
+
+                        <button
+                          onClick={() => copyToClipboard(artifact.canonicalUrl)}
+                          className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
+                          title="Copy Canonical Link"
+                        >
+                          {copied ? <Check className="w-4 h-4 text-[#39FF14]" /> : <Share2 className="w-4 h-4" />}
+                        </button>
                       </div>
                     </div>
-
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={toggleMute}
-                        className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
-                      >
-                        {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
-                      </button>
-
-                      <button
-                        onClick={() => copyToClipboard(artifact.canonicalUrl)}
-                        className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition"
-                        title="Copy Canonical Link"
-                      >
-                        {copied ? <Check className="w-4 h-4 text-[#39FF14]" /> : <Share2 className="w-4 h-4" />}
-                      </button>
-                    </div>
                   </div>
-                </div>
+                )}
               </div>
             ) : null}
 

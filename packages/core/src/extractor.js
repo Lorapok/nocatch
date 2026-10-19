@@ -159,6 +159,7 @@ export class NoCatchExtractor {
 
     const audioBlock = top[6];
     let audio = null;
+    let video = null;
 
     if (audioBlock && Array.isArray(audioBlock)) {
       const episodeName = audioBlock[1]?.[0] || 'Episode';
@@ -224,6 +225,38 @@ export class NoCatchExtractor {
         streams,
         quality: 'Original 128kbps AAC (M4A)',
       };
+
+      // Extract synchronized video track from DASH manifest if available
+      const dashStream = streams.find(s => s.url && s.url.includes('dash'));
+      if (dashStream) {
+        try {
+          const dashRes = await fetch(dashStream.url, { headers: { 'User-Agent': this.userAgent } });
+          if (dashRes.ok) {
+            const dashXml = await dashRes.text();
+            const videoMatch = dashXml.match(/<AdaptationSet[^>]*mimeType="video\/mp4"[^>]*>([\s\S]*?)<\/AdaptationSet>/);
+            if (videoMatch) {
+              const repMatches = [...videoMatch[1].matchAll(/<Representation[^>]*id="([^"]+)"[^>]*codecs="([^"]+)"[^>]*width="([^"]+)"[^>]*height="([^"]+)"[^>]*>[\s\S]*?<BaseURL[^>]*>([\s\S]*?)<\/BaseURL>/g)];
+              if (repMatches.length > 0) {
+                const rep = repMatches[repMatches.length - 1];
+                const videoUrl = rep[5].trim().replace(/&amp;/g, '&');
+                video = {
+                  formatId: rep[1],
+                  codec: rep[2],
+                  width: parseInt(rep[3], 10),
+                  height: parseInt(rep[4], 10),
+                  quality: `${rep[3]}x${rep[4]} H.264 (${rep[2]})`,
+                  streamUrl: videoUrl,
+                  filename: sanitizeFilename(`${title}_video.mp4`),
+                  mimeType: 'video/mp4',
+                  type: 'Google Video Canvas (avc1)'
+                };
+              }
+            }
+          }
+        } catch (e) {
+          // Non-fatal if DASH cannot be resolved
+        }
+      }
     }
 
     // Written notes / text content if artifact is a document
@@ -243,6 +276,7 @@ export class NoCatchExtractor {
       sourceCount: sourcesCount,
       sourceIds: sourcesList,
       audio,
+      video,
       textContent,
       canonicalUrl: `https://notebook.google.com/notebook/${notebookId || ''}/artifact/${artifactId}`,
       extractedAt: new Date().toISOString(),

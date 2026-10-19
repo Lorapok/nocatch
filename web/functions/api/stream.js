@@ -41,7 +41,9 @@ export async function onRequestGet({ request }) {
     }
 
     const responseHeaders = new Headers();
-    responseHeaders.set('Content-Type', 'audio/mp4');
+    const originContentType = streamRes.headers.get('content-type');
+    const isVideo = targetUrl.includes('mime=video') || (originContentType && originContentType.includes('video'));
+    responseHeaders.set('Content-Type', isVideo ? 'video/mp4' : 'audio/mp4');
     responseHeaders.set('Content-Disposition', 'inline');
     responseHeaders.set('Access-Control-Allow-Origin', '*');
     responseHeaders.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
