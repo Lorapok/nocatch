@@ -9,6 +9,8 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/Lorapok/nocatch?style=for-the-badge&color=39FF14&label=Release)](https://github.com/Lorapok/nocatch/releases)
 [![npm version](https://img.shields.io/npm/v/lorapok-nocatch?style=for-the-badge&color=00F3FF&label=npm)](https://www.npmjs.com/package/lorapok-nocatch)
+[![GitHub Packages](https://img.shields.io/badge/GitHub%20Packages-@lorapok%2Fnocatch-2088FF?style=for-the-badge&logo=github)](https://github.com/Lorapok/nocatch/packages)
+[![Docker Image](https://img.shields.io/badge/Docker-ghcr.io-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/Lorapok/nocatch/pkgs/container/nocatch)
 [![Packagist Version](https://img.shields.io/packagist/v/lorapok/nocatch?style=for-the-badge&color=BC13FE&label=Packagist)](https://packagist.org/packages/lorapok/nocatch)
 [![Discord Bot](https://img.shields.io/badge/Discord-Bot%20v2.0-5865F2?style=for-the-badge&logo=discord&logoColor=white)](docs/DISCORD_BOT_PUBLISHING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-39FF14?style=for-the-badge)](LICENSE)
@@ -103,7 +105,26 @@ nocatch/
 
 ## 🛠 Quick Start (Developers & CLI)
 
-### 1. Command-Line Interface (CLI)
+### 1. Install & Run via Package Managers
+
+```bash
+# 📦 Install globally from npm
+npm install -g lorapok-nocatch
+
+# Or run instantly via npx
+npx lorapok-nocatch "<notebook_url>" --info
+
+# 🐳 Run via GitHub Container Registry (Docker)
+docker run --rm ghcr.io/lorapok/nocatch:latest "<notebook_url>" --info
+
+# 🐘 Install PHP Composer package
+composer require lorapok/nocatch
+
+# 🐙 Install from GitHub Packages
+npm install @lorapok/nocatch --registry=https://npm.pkg.github.com
+```
+
+### 2. Local CLI Usage
 
 ```bash
 # Clone the repository
