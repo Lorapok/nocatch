@@ -1,0 +1,83 @@
+name: Lorapok AI Auto-Fixer
+
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Auto-fix mode (issue or ci-failure)'
+        required: true
+        default: 'issue'
+        type: choice
+        options:
+          - issue
+          - ci-failure
+      issue_number:
+        description: 'Issue number (if mode=issue)'
+        required: false
+        type: string
+      failed_run_id:
+        description: 'Failed CI Run ID (if mode=ci-failure)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  auto-fix:
+    name: Autonomous Bug & CI Repair
+    runs-on: ubuntu-latest
+    # Avoid infinite loops: ignore comments made by bots or automated PR comments
+    if: >-
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event_name == 'issues' && (github.event.action == 'opened' || github.event.label.name == 'bug')) ||
+      (github.event_name == 'issue_comment' && !github.event.issue.pull_request && github.event.comment.user.type != 'Bot' && (contains(github.event.comment.body, '/fix') || contains(github.event.comment.body, '/ai-fix'))) ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_branch == 'main')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lorapok AI Auto-Fixer
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_ISSUE_NUMBER: ${{ inputs.issue_number }}
+          INPUT_FAILED_RUN_ID: ${{ inputs.failed_run_id }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          ISSUE_TITLE: ${{ github.event.issue.title || '' }}
+          ISSUE_BODY: ${{ github.event.issue.body || '' }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login || github.actor }}
+          FAILED_RUN_ID: ${{ github.event.workflow_run.id || inputs.failed_run_id }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_run" ] || [ "$INPUT_MODE" = "ci-failure" ]; then
+            echo "🔧 Triggering CI Failure auto-repair for run $FAILED_RUN_ID..."
+            node scripts/ai-auto-fixer.js ci-failure
+          else
+            echo "🔧 Triggering Issue auto-repair for issue #$ISSUE_NUMBER..."
+            node scripts/ai-auto-fixer.js issue
+          fi
