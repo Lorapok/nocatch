@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Background Space Gradient -->
+    <radialGradient id="spaceRadial" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#0f1f38"/>
+      <stop offset="45%" stop-color="#070e1c"/>
+      <stop offset="80%" stop-color="#02050b"/>
+      <stop offset="100%" stop-color="#010206"/>
+    </radialGradient>
+
+    <!-- Outer Tech Glow Gradients -->
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5865F2"/>
+      <stop offset="35%" stop-color="#00F3FF"/>
+      <stop offset="70%" stop-color="#39FF14"/>
+      <stop offset="100%" stop-color="#BC13FE"/>
+    </linearGradient>
+
+    <radialGradient id="centerAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00F3FF" stop-opacity="0.32"/>
+      <stop offset="50%" stop-color="#5865F2" stop-opacity="0.18"/>
+      <stop offset="85%" stop-color="#39FF14" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Larva Body Gradients -->
+    <linearGradient id="larvaTail" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#00F3FF"/>
+      <stop offset="100%" stop-color="#054b61"/>
+    </linearGradient>
+    <linearGradient id="larvaMid1" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#00e5cf"/>
+      <stop offset="100%" stop-color="#085e54"/>
+    </linearGradient>
+    <linearGradient id="larvaMid2" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#14ff9e"/>
+      <stop offset="100%" stop-color="#09633e"/>
+    </linearGradient>
+    <linearGradient id="larvaHead" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#00F3FF"/>
+      <stop offset="50%" stop-color="#00e5aa"/>
+      <stop offset="100%" stop-color="#036657"/>
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="neonBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur1"/>
+      <feGaussianBlur stdDeviation="6" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="24" result="blur1"/>
+      <feGaussianBlur stdDeviation="10" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1024x1024 Canvas Base -->
+  <rect width="1024" height="1024" rx="220" fill="url(#spaceRadial)"/>
+  <rect width="1024" height="1024" rx="220" fill="none" stroke="url(#ringGrad)" stroke-width="8" opacity="0.85"/>
+
+  <!-- Discord Circular Safe Zone Guide Ring (Subtle Tech Ring) -->
+  <circle cx="512" cy="512" r="486" fill="none" stroke="#5865F2" stroke-width="2.5" opacity="0.4" stroke-dasharray="16 12"/>
+  <circle cx="512" cy="512" r="460" fill="none" stroke="#00F3FF" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- Center Atmospheric Core Aura -->
+  <circle cx="512" cy="512" r="400" fill="url(#centerAura)"/>
+
+  <!-- Pedestal Acoustic Sonic Rings -->
+  <g transform="translate(0, 730)">
+    <ellipse cx="512" cy="30" rx="360" ry="46" fill="#01050c" opacity="0.95"/>
+    <ellipse cx="512" cy="30" rx="340" ry="40" fill="none" stroke="#5865F2" stroke-width="4" opacity="0.6" filter="url(#neonBlur)"/>
+    <ellipse cx="512" cy="30" rx="260" ry="26" fill="none" stroke="#00F3FF" stroke-width="3" opacity="0.75" filter="url(#neonBlur)"/>
+    <ellipse cx="512" cy="30" rx="170" ry="16" fill="none" stroke="#39FF14" stroke-width="2.5" opacity="0.9"/>
+  </g>
+
+  <!-- Radiating Equalizer Soundwaves (Left Side) -->
+  <g opacity="0.9" transform="translate(130, 360)">
+    <rect x="0" y="100" width="14" height="80" rx="7" fill="#5865F2" filter="url(#neonBlur)"/>
+    <rect x="26" y="50" width="14" height="140" rx="7" fill="#00F3FF" filter="url(#neonBlur)"/>
+    <rect x="52" y="10" width="14" height="190" rx="7" fill="#39FF14" filter="url(#neonBlur)"/>
+    <rect x="78" y="70" width="14" height="120" rx="7" fill="#BC13FE" filter="url(#neonBlur)"/>
+  </g>
+
+  <!-- Radiating Equalizer Soundwaves (Right Side) -->
+  <g opacity="0.9" transform="translate(800, 360)">
+    <rect x="0" y="70" width="14" height="120" rx="7" fill="#BC13FE" filter="url(#neonBlur)"/>
+    <rect x="26" y="10" width="14" height="190" rx="7" fill="#39FF14" filter="url(#neonBlur)"/>
+    <rect x="52" y="50" width="14" height="140" rx="7" fill="#00F3FF" filter="url(#neonBlur)"/>
+    <rect x="78" y="100" width="14" height="80" rx="7" fill="#5865F2" filter="url(#neonBlur)"/>
+  </g>
+
+  <!-- ================= LORAPOK CYBER LARVA MASCOT ================= -->
+  <g transform="translate(16, 20)">
+    <!-- Segment 1: Tail -->
+    <ellipse cx="260" cy="570" rx="115" ry="105" fill="url(#larvaTail)"/>
+
+    <!-- Segment 2: Mid-Body Rear -->
+    <ellipse cx="350" cy="550" rx="125" ry="115" fill="url(#larvaMid1)"/>
+
+    <!-- Segment 3: Mid-Body Front -->
+    <ellipse cx="445" cy="530" rx="138" ry="128" fill="url(#larvaMid2)"/>
+
+    <!-- Luminous Cyber Belly Arc -->
+    <path d="M 230 620 C 310 670, 450 660, 580 570" fill="none" stroke="#39FF14" stroke-width="12" stroke-linecap="round" filter="url(#intenseGlow)"/>
+    <path d="M 230 620 C 310 670, 450 660, 580 570" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Head Segment -->
+    <ellipse cx="585" cy="500" rx="155" ry="142" fill="url(#larvaHead)"/>
+
+    <!-- Antennae -->
+    <!-- Left Antenna -->
+    <path d="M 510 390 Q 450 280, 415 240" fill="none" stroke="#00F3FF" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="415" cy="240" r="24" fill="#00F3FF" filter="url(#intenseGlow)"/>
+    <circle cx="415" cy="240" r="12" fill="#FFFFFF"/>
+
+    <!-- Right Antenna -->
+    <path d="M 625 380 Q 690 270, 725 230" fill="none" stroke="#39FF14" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="725" cy="230" r="24" fill="#39FF14" filter="url(#intenseGlow)"/>
+    <circle cx="725" cy="230" r="12" fill="#FFFFFF"/>
+
+    <!-- Cyber Studio Headphone Band -->
+    <path d="M 405 470 C 420 270, 725 270, 740 470" fill="none" stroke="#39FF14" stroke-width="20" stroke-linecap="round" filter="url(#intenseGlow)"/>
+    <path d="M 405 470 C 420 270, 725 270, 740 470" fill="none" stroke="#5865F2" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 405 470 C 420 270, 725 270, 740 470" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Left Ear Cup -->
+    <rect x="382" y="430" width="44" height="106" rx="22" fill="#020814" stroke="#5865F2" stroke-width="7" filter="url(#neonBlur)"/>
+    <line x1="404" y1="450" x2="404" y2="515" stroke="#00F3FF" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Right Ear Cup -->
+    <rect x="720" y="430" width="44" height="106" rx="22" fill="#020814" stroke="#39FF14" stroke-width="7" filter="url(#neonBlur)"/>
+    <line x1="742" y1="450" x2="742" y2="515" stroke="#5865F2" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Cyber Visor / Faceplate -->
+    <rect x="490" y="440" width="195" height="110" rx="34" fill="#020814" stroke="#00F3FF" stroke-width="7"/>
+    
+    <!-- Left Glowing Eye -->
+    <rect x="518" y="470" width="46" height="46" rx="14" fill="#39FF14" filter="url(#intenseGlow)"/>
+    <rect x="526" y="478" width="30" height="30" rx="8" fill="#FFFFFF"/>
+
+    <!-- Right Glowing Eye -->
+    <rect x="612" y="470" width="46" height="46" rx="14" fill="#39FF14" filter="url(#intenseGlow)"/>
+    <rect x="620" y="478" width="30" height="30" rx="8" fill="#FFFFFF"/>
+  </g>
+
+  <!-- ================= DISCORD BADGE CORNER EMBLEM ================= -->
+  <!-- Positioned inside the safe circular area at bottom right -->
+  <g transform="translate(680, 680)" filter="url(#neonBlur)">
+    <circle cx="80" cy="80" r="76" fill="#030918" stroke="#5865F2" stroke-width="6"/>
+    <circle cx="80" cy="80" r="68" fill="none" stroke="#00F3FF" stroke-width="3" stroke-dasharray="10 6"/>
+
+    <!-- Discord Gaming Bot Icon Inside Badge -->
+    <g transform="translate(42, 46) scale(1.35)">
+      <!-- Discord Bot Controller Silhouette -->
+      <path d="M 47.5 12 C 43.8 10.3 39.8 9.1 35.6 8.4 C 35 9.4 34.4 10.8 33.9 12 C 29.4 11.3 24.9 11.3 20.4 12 C 19.9 10.8 19.2 9.4 18.7 8.4 C 14.5 9.1 10.5 10.3 6.8 12 C -0.8 23.3 -1.3 34.3 1 45.1 C 5.8 48.7 10.5 50.9 15.1 52.3 C 16.2 50.8 17.2 49.2 18 47.5 C 16.4 46.9 14.8 46.1 13.3 45.1 C 13.7 44.8 14.1 44.5 14.4 44.2 C 23.3 48.3 33 48.3 41.8 44.2 C 42.2 44.5 42.6 44.8 43 45.1 C 41.5 46.1 39.9 46.9 38.3 47.5 C 39.1 49.2 40.1 50.8 41.2 52.3 C 45.8 50.9 50.5 48.7 55.3 45.1 C 57.9 30.6 51 19.7 47.5 12 Z M 18.5 39 C 15.7 39 13.5 36.4 13.5 33.3 C 13.5 30.2 15.7 27.6 18.5 27.6 C 21.3 27.6 23.6 30.2 23.5 33.3 C 23.5 36.4 21.3 39 18.5 39 Z M 37.8 39 C 35 39 32.8 36.4 32.8 33.3 C 32.8 30.2 35 27.6 37.8 27.6 C 40.6 27.6 42.9 30.2 42.8 33.3 C 42.8 36.4 40.6 39 37.8 39 Z" fill="#5865F2"/>
+      <!-- Glowing Eyes on Discord Logo -->
+      <circle cx="18.5" cy="33.3" r="3" fill="#39FF14"/>
+      <circle cx="37.8" cy="33.3" r="3" fill="#00F3FF"/>
+    </g>
+
+    <!-- Download Flash Arrow Indicator -->
+    <path d="M 80 108 L 80 134 M 70 124 L 80 134 L 90 124" fill="none" stroke="#39FF14" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

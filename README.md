@@ -185,6 +185,7 @@ Pristine visual assets tailored for social media sharing, repo previews, and Dis
 | Platform | Asset File | Resolution | Description |
 |---|---|---|---|
 | **GitHub Social Preview** | [`.github/assets/github-social-preview.png`](.github/assets/github-social-preview.png) | 1280x640 (2:1) | Official GitHub repository card |
+| **Discord Bot Avatar** | [`assets/branding/nocatch-discord-bot-avatar.png`](assets/branding/nocatch-discord-bot-avatar.png) | 1024x1024 (1:1) | Official circular safe-zone bot avatar |
 | **Discord Banner & Embed** | [`assets/branding/social/discord-banner.png`](assets/branding/social/discord-banner.png) | 1280x720 (16:9) | Discord App Directory & Embed banner |
 | **Twitter / X Large Card** | [`assets/branding/social/twitter-header.png`](assets/branding/social/twitter-header.png) | 1200x675 (16:9) | Twitter Summary Card with large image |
 | **LinkedIn Share Graphic** | [`assets/branding/social/linkedin-share.png`](assets/branding/social/linkedin-share.png) | 1200x627 (1.91:1)| Professional feed landscape post |

@@ -34,7 +34,7 @@ The NoCatch Discord bot (`discord-bot/src/bot.js`) is built with **Discord.js v1
 3. Enter the Application Name: `NoCatch`.
 4. Agree to the Discord Developer Terms of Service and Developer Policy.
 5. In the **General Information** tab:
-   - **App Icon**: Upload `assets/branding/nocatch-app-icon.png` (512x512).
+   - **App Icon**: Upload `assets/branding/nocatch-discord-bot-avatar.png` (1024x1024, optimized for Discord's circular safe-zone crop).
    - **Description**:
      > Universal Google NotebookLM Harvester by Lorapok Labs. Download high-fidelity Audio Overview podcasts (M4A), Google Video Canvas (MP4), and Markdown study guides in 1-click directly in Discord.
    - **Tags**: `utilities`, `productivity`, `audio`, `podcast`, `ai`, `media`
