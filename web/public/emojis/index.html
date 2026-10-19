@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Emojis Suite — NoCatch | Lorapok Labs</title>
+  <meta name="description" content="Official 128x128 custom Discord emojis for NoCatch and Lorapok Labs. Download individually or as a complete bundle.">
+  <link rel="icon" type="image/png" href="/assets/nocatch-app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #030712;
+      color: #F8FAFC;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+      margin-bottom: 2.5rem;
+    }
+    .title-group h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFF, #00F3FF 60%, #39FF14 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+    .title-group p { font-size: 0.9rem; color: #94A3B8; }
+    .btn-zip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #39FF14, #00F3FF);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(57, 255, 20, 0.3);
+      transition: transform 0.2s;
+    }
+    .btn-zip:hover { transform: translateY(-2px); }
+    .specs-banner {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.85rem;
+    }
+    .spec-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .spec-label { font-size: 0.75rem; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; }
+    .spec-val { font-weight: 600; color: #00F3FF; font-family: 'JetBrains Mono', monospace; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      border-color: #00F3FF;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -10px rgba(0, 243, 255, 0.25);
+    }
+    .emoji-preview {
+      width: 96px;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .emoji-preview img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+    .emoji-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #39FF14;
+      background: rgba(57, 255, 20, 0.08);
+      border: 1px solid rgba(57, 255, 20, 0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.4rem;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+    .emoji-desc {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+      min-height: 2.1rem;
+    }
+    .card-footer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(51, 65, 85, 0.4);
+      padding-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #64748B;
+    }
+    .download-link {
+      color: #00F3FF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .download-link:hover { text-decoration: underline; }
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #39FF14;
+      color: #000;
+      font-weight: 700;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-group">
+        <h1>NoCatch &amp; Lorapok Discord Emojis</h1>
+        <p>Complete 20-emoji professional set configured for Discord App &amp; Server upload</p>
+      </div>
+      <a href="/emojis/nocatch-discord-emojis.zip" class="btn-zip" download>
+        ⬇ Download All 20 Emojis (.ZIP)
+      </a>
+    </header>
+
+    <div class="specs-banner">
+      <div class="spec-item">
+        <span class="spec-label">Resolution</span>
+        <span class="spec-val">128 × 128 px (Square)</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Format</span>
+        <span class="spec-val">PNG (Transparent Alpha)</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">File Sizes</span>
+        <span class="spec-val">~3–10 KB each (&lt; 256 KB limit)</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Naming Compliance</span>
+        <span class="spec-val">[a-z0-9_] Validated</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/lorapok_mark.png" alt=":lorapok_mark:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('lorapok_mark')" title="Click to copy :lorapok_mark:">:lorapok_mark:</span>
+          <p class="emoji-desc">Lorapok Labs signature cyber diamond emblem</p>
+          <div class="card-footer">
+            <span>9.1 KB</span>
+            <a href="/emojis/lorapok_mark.png" download="lorapok_mark.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/lorapok_shield.png" alt=":lorapok_shield:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('lorapok_shield')" title="Click to copy :lorapok_shield:">:lorapok_shield:</span>
+          <p class="emoji-desc">Zero-Trust security and compliance shield</p>
+          <div class="card-footer">
+            <span>6.1 KB</span>
+            <a href="/emojis/lorapok_shield.png" download="lorapok_shield.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/lorapok_verified.png" alt=":lorapok_verified:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('lorapok_verified')" title="Click to copy :lorapok_verified:">:lorapok_verified:</span>
+          <p class="emoji-desc">Official verified organization and bot badge</p>
+          <div class="card-footer">
+            <span>6.2 KB</span>
+            <a href="/emojis/lorapok_verified.png" download="lorapok_verified.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/loragent_core.png" alt=":loragent_core:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('loragent_core')" title="Click to copy :loragent_core:">:loragent_core:</span>
+          <p class="emoji-desc">Autonomous AI agent core engine</p>
+          <div class="card-footer">
+            <span>14.9 KB</span>
+            <a href="/emojis/loragent_core.png" download="loragent_core.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_bot.png" alt=":nocatch_bot:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_bot')" title="Click to copy :nocatch_bot:">:nocatch_bot:</span>
+          <p class="emoji-desc">Official NoCatch bot mascot head with studio headphones</p>
+          <div class="card-footer">
+            <span>5.4 KB</span>
+            <a href="/emojis/nocatch_bot.png" download="nocatch_bot.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_headphones.png" alt=":nocatch_headphones:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_headphones')" title="Click to copy :nocatch_headphones:">:nocatch_headphones:</span>
+          <p class="emoji-desc">Studio monitoring headphones emitting sound pulses</p>
+          <div class="card-footer">
+            <span>4.3 KB</span>
+            <a href="/emojis/nocatch_headphones.png" download="nocatch_headphones.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_audio.png" alt=":nocatch_audio:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_audio')" title="Click to copy :nocatch_audio:">:nocatch_audio:</span>
+          <p class="emoji-desc">Dynamic stereo equalizer spectrum audio waves</p>
+          <div class="card-footer">
+            <span>4.0 KB</span>
+            <a href="/emojis/nocatch_audio.png" download="nocatch_audio.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_video.png" alt=":nocatch_video:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_video')" title="Click to copy :nocatch_video:">:nocatch_video:</span>
+          <p class="emoji-desc">Google NotebookLM synchronized MP4 video canvas</p>
+          <div class="card-footer">
+            <span>4.0 KB</span>
+            <a href="/emojis/nocatch_video.png" download="nocatch_video.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_zip.png" alt=":nocatch_zip:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_zip')" title="Click to copy :nocatch_zip:">:nocatch_zip:</span>
+          <p class="emoji-desc">Full studio 5-artifact archive zip bundle</p>
+          <div class="card-footer">
+            <span>4.3 KB</span>
+            <a href="/emojis/nocatch_zip.png" download="nocatch_zip.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/nocatch_spark.png" alt=":nocatch_spark:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('nocatch_spark')" title="Click to copy :nocatch_spark:">:nocatch_spark:</span>
+          <p class="emoji-desc">NotebookLM and Gemini generative intelligence spark</p>
+          <div class="card-footer">
+            <span>4.7 KB</span>
+            <a href="/emojis/nocatch_spark.png" download="nocatch_spark.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/notebooklm_studio.png" alt=":notebooklm_studio:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('notebooklm_studio')" title="Click to copy :notebooklm_studio:">:notebooklm_studio:</span>
+          <p class="emoji-desc">Google NotebookLM studio notebook with acoustic waves</p>
+          <div class="card-footer">
+            <span>3.1 KB</span>
+            <a href="/emojis/notebooklm_studio.png" download="notebooklm_studio.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/podcast_mic.png" alt=":podcast_mic:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('podcast_mic')" title="Click to copy :podcast_mic:">:podcast_mic:</span>
+          <p class="emoji-desc">Studio condenser microphone with on-air broadcast pulse</p>
+          <div class="card-footer">
+            <span>5.4 KB</span>
+            <a href="/emojis/podcast_mic.png" download="podcast_mic.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/hq_320k.png" alt=":hq_320k:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('hq_320k')" title="Click to copy :hq_320k:">:hq_320k:</span>
+          <p class="emoji-desc">320kbps high fidelity studio audio badge</p>
+          <div class="card-footer">
+            <span>8.2 KB</span>
+            <a href="/emojis/hq_320k.png" download="hq_320k.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/status_online.png" alt=":status_online:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('status_online')" title="Click to copy :status_online:">:status_online:</span>
+          <p class="emoji-desc">Operational online heartbeat status orb</p>
+          <div class="card-footer">
+            <span>9.2 KB</span>
+            <a href="/emojis/status_online.png" download="status_online.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/status_extracting.png" alt=":status_extracting:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('status_extracting')" title="Click to copy :status_extracting:">:status_extracting:</span>
+          <p class="emoji-desc">Active extraction and harvesting sync loop</p>
+          <div class="card-footer">
+            <span>3.0 KB</span>
+            <a href="/emojis/status_extracting.png" download="status_extracting.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/status_success.png" alt=":status_success:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('status_success')" title="Click to copy :status_success:">:status_success:</span>
+          <p class="emoji-desc">Successful operation and validation check</p>
+          <div class="card-footer">
+            <span>5.5 KB</span>
+            <a href="/emojis/status_success.png" download="status_success.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/status_error.png" alt=":status_error:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('status_error')" title="Click to copy :status_error:">:status_error:</span>
+          <p class="emoji-desc">Alert notice and exception indicator</p>
+          <div class="card-footer">
+            <span>4.6 KB</span>
+            <a href="/emojis/status_error.png" download="status_error.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/speed_turbo.png" alt=":speed_turbo:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('speed_turbo')" title="Click to copy :speed_turbo:">:speed_turbo:</span>
+          <p class="emoji-desc">Instant sub-second harvesting speed lightning bolt</p>
+          <div class="card-footer">
+            <span>4.8 KB</span>
+            <a href="/emojis/speed_turbo.png" download="speed_turbo.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/vault_lock.png" alt=":vault_lock:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('vault_lock')" title="Click to copy :vault_lock:">:vault_lock:</span>
+          <p class="emoji-desc">Zero-Retention encrypted client-side vault</p>
+          <div class="card-footer">
+            <span>4.9 KB</span>
+            <a href="/emojis/vault_lock.png" download="vault_lock.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="emoji-preview">
+            <img src="/emojis/discord_bot.png" alt=":discord_bot:" />
+          </div>
+          <span class="emoji-name" onclick="copyName('discord_bot')" title="Click to copy :discord_bot:">:discord_bot:</span>
+          <p class="emoji-desc">Discord blurple app badge with cyber antennae</p>
+          <div class="card-footer">
+            <span>5.8 KB</span>
+            <a href="/emojis/discord_bot.png" download="discord_bot.png" class="download-link">Download PNG</a>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Copied emoji name!</div>
+
+  <script>
+    function copyName(name) {
+      navigator.clipboard.writeText(':' + name + ':').then(() => {
+        const toast = document.getElementById('toast');
+        toast.innerText = 'Copied :' + name + ': to clipboard!';
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

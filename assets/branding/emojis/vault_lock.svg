@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="vl_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#BC13FE"/>
+          <stop offset="100%" stop-color="#00F3FF"/>
+        </linearGradient>
+      </defs>
+      <!-- Vault Body -->
+      <rect x="24" y="48" width="80" height="66" rx="14" fill="#0A0618" stroke="url(#vl_grad)" stroke-width="5"/>
+      <!-- Shackle -->
+      <path d="M42 48 V34 C42 22 52 12 64 12 C76 12 86 22 86 34 V48" fill="none" stroke="url(#vl_grad)" stroke-width="6" stroke-linecap="round"/>
+      <!-- Safe dial / Keyhole -->
+      <circle cx="64" cy="80" r="14" fill="#140D2E" stroke="#BC13FE" stroke-width="2.5"/>
+      <circle cx="64" cy="77" r="4" fill="#39FF14"/>
+      <path d="M64 81 V88" stroke="#39FF14" stroke-width="3" stroke-linecap="round"/>
+    </svg>

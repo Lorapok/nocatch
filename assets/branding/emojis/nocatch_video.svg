@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="vd_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#39FF14"/>
+          <stop offset="100%" stop-color="#00F3FF"/>
+        </linearGradient>
+      </defs>
+      <!-- Video Screen Frame -->
+      <rect x="12" y="24" width="104" height="80" rx="18" fill="#050C1A" stroke="url(#vd_grad)" stroke-width="4.5"/>
+      <!-- Film Perforation dots -->
+      <circle cx="24" cy="36" r="3" fill="#39FF14" opacity="0.6"/>
+      <circle cx="24" cy="92" r="3" fill="#39FF14" opacity="0.6"/>
+      <circle cx="104" cy="36" r="3" fill="#00F3FF" opacity="0.6"/>
+      <circle cx="104" cy="92" r="3" fill="#00F3FF" opacity="0.6"/>
+      <!-- Play Button Triangle -->
+      <polygon points="52,44 88,64 52,84" fill="url(#vd_grad)"/>
+      <!-- Subtle Scanline -->
+      <line x1="16" y1="64" x2="44" y2="64" stroke="#39FF14" stroke-width="1.5" opacity="0.4"/>
+      <line x1="92" y1="64" x2="112" y2="64" stroke="#00F3FF" stroke-width="1.5" opacity="0.4"/>
+    </svg>

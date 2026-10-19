@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="dc_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5865F2"/>
+          <stop offset="100%" stop-color="#3843b0"/>
+        </linearGradient>
+      </defs>
+      <!-- Base Background Rounded Square -->
+      <rect x="12" y="12" width="104" height="104" rx="28" fill="url(#dc_grad)"/>
+      <rect x="12" y="12" width="104" height="104" rx="28" fill="none" stroke="#00F3FF" stroke-width="2.5" opacity="0.7"/>
+      <!-- Discord Mascot Shape -->
+      <path d="M88 38 C80 34 72 32 64 32 C56 32 48 34 40 38 C28 55 24 72 26 88 C34 94 44 96 52 96 L56 90 C46 87 42 82 42 82 C42 82 43 83 45 84 C50 87 57 88 64 88 C71 88 78 87 83 84 C85 83 86 82 86 82 C86 82 82 87 72 90 L76 96 C84 96 94 94 102 88 C104 70 99 53 88 38 Z" fill="#FFFFFF"/>
+      <!-- Eyes -->
+      <ellipse cx="48" cy="62" rx="6" ry="7" fill="#5865F2"/>
+      <ellipse cx="80" cy="62" rx="6" ry="7" fill="#5865F2"/>
+      <!-- Cyan Pupil Accents -->
+      <circle cx="48" cy="62" r="2.5" fill="#00F3FF"/>
+      <circle cx="80" cy="62" r="2.5" fill="#00F3FF"/>
+    </svg>

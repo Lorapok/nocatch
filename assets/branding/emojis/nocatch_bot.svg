@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="nb_head" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00F3FF"/>
+          <stop offset="60%" stop-color="#00d29a"/>
+          <stop offset="100%" stop-color="#05634d"/>
+        </linearGradient>
+      </defs>
+      <!-- Headphone Arch -->
+      <path d="M22 66 C22 36 40 20 64 20 C88 20 106 36 106 66" stroke="#00F3FF" stroke-width="7" stroke-linecap="round"/>
+      <!-- Mascot Head -->
+      <rect x="30" y="44" width="68" height="56" rx="28" fill="url(#nb_head)" stroke="#052026" stroke-width="3"/>
+      <!-- Visor Face Plate -->
+      <rect x="38" y="54" width="52" height="34" rx="14" fill="#030A14"/>
+      <!-- Glowing Eyes -->
+      <circle cx="52" cy="70" r="5" fill="#39FF14"/>
+      <circle cx="76" cy="70" r="5" fill="#39FF14"/>
+      <!-- Headphone Earcups -->
+      <rect x="14" y="56" width="14" height="28" rx="6" fill="#081426" stroke="#00F3FF" stroke-width="2.5"/>
+      <rect x="100" y="56" width="14" height="28" rx="6" fill="#081426" stroke="#00F3FF" stroke-width="2.5"/>
+      <!-- Mini Antenna -->
+      <path d="M64 20 V10" stroke="#39FF14" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="64" cy="8" r="3.5" fill="#39FF14"/>
+    </svg>

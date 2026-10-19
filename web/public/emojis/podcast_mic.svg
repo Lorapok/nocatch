@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="mic_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#39FF14"/>
+          <stop offset="100%" stop-color="#00F3FF"/>
+        </linearGradient>
+      </defs>
+      <!-- Soundwave Radiations -->
+      <path d="M26 44 C20 54 20 68 26 78 M102 44 C108 54 108 68 102 78" stroke="#39FF14" stroke-width="3" stroke-linecap="round"/>
+      <path d="M16 34 C6 50 6 72 16 88 M112 34 C122 50 122 72 112 88" stroke="#00F3FF" stroke-width="2.5" opacity="0.6" stroke-linecap="round"/>
+      <!-- Mic Capsule -->
+      <rect x="46" y="16" width="36" height="60" rx="18" fill="#0A1424" stroke="url(#mic_grad)" stroke-width="4"/>
+      <!-- Grille details -->
+      <line x1="46" y1="44" x2="82" y2="44" stroke="#00F3FF" stroke-width="2"/>
+      <line x1="56" y1="22" x2="56" y2="44" stroke="#39FF14" stroke-width="2"/>
+      <line x1="72" y1="22" x2="72" y2="44" stroke="#39FF14" stroke-width="2"/>
+      <!-- U-Mount -->
+      <path d="M38 52 V66 C38 80 50 92 64 92 C78 92 90 80 90 66 V52" stroke="#5865F2" stroke-width="4" stroke-linecap="round"/>
+      <!-- Stand and Base -->
+      <path d="M64 92 V112 M42 112 H86" stroke="#5865F2" stroke-width="4.5" stroke-linecap="round"/>
+      <!-- On Air Red Dot -->
+      <circle cx="64" cy="58" r="3.5" fill="#FF0055"/>
+    </svg>

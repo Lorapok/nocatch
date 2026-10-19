@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="tb_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00F3FF"/>
+          <stop offset="50%" stop-color="#39FF14"/>
+          <stop offset="100%" stop-color="#FFEE00"/>
+        </linearGradient>
+      </defs>
+      <!-- Background Cyber Hex -->
+      <polygon points="64,8 116,36 116,92 64,120 12,92 12,36" fill="#040D18" stroke="#00F3FF" stroke-width="3" opacity="0.6"/>
+      <!-- Lightning Bolt -->
+      <polygon points="72,14 26,68 60,68 48,114 104,56 70,56" fill="url(#tb_grad)"/>
+      <circle cx="72" cy="14" r="3" fill="#FFFFFF"/>
+      <circle cx="48" cy="114" r="3" fill="#FFFFFF"/>
+    </svg>

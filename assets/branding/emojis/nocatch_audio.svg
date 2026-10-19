@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="eq_grad" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stop-color="#00F3FF"/>
+          <stop offset="65%" stop-color="#39FF14"/>
+          <stop offset="100%" stop-color="#FFFFFF"/>
+        </linearGradient>
+      </defs>
+      <!-- Background Circle -->
+      <rect x="8" y="8" width="112" height="112" rx="28" fill="#040A18" stroke="#00F3FF" stroke-width="2.5" opacity="0.9"/>
+      <!-- Spectrum Bars -->
+      <rect x="22" y="56" width="12" height="38" rx="6" fill="#5865F2"/>
+      <rect x="40" y="32" width="12" height="62" rx="6" fill="#00F3FF"/>
+      <rect x="58" y="18" width="12" height="76" rx="6" fill="url(#eq_grad)"/>
+      <rect x="76" y="38" width="12" height="56" rx="6" fill="#39FF14"/>
+      <rect x="94" y="60" width="12" height="34" rx="6" fill="#BC13FE"/>
+      <!-- Base Line -->
+      <line x1="18" y1="102" x2="110" y2="102" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+    </svg>

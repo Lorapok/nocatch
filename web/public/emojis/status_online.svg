@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <radialGradient id="son_glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#39FF14"/>
+          <stop offset="50%" stop-color="#39FF14" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#39FF14" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- Radar Pulse Rings -->
+      <circle cx="64" cy="64" r="54" stroke="#39FF14" stroke-width="1.5" opacity="0.25"/>
+      <circle cx="64" cy="64" r="42" stroke="#39FF14" stroke-width="2" opacity="0.4" stroke-dasharray="8 6"/>
+      <circle cx="64" cy="64" r="30" stroke="#39FF14" stroke-width="3" opacity="0.7"/>
+      <!-- Glowing Core Orb -->
+      <circle cx="64" cy="64" r="22" fill="url(#son_glow)"/>
+      <circle cx="64" cy="64" r="16" fill="#39FF14"/>
+      <circle cx="59" cy="59" r="4" fill="#FFFFFF"/>
+    </svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+      <defs>
+        <linearGradient id="lm_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00F3FF"/>
+          <stop offset="50%" stop-color="#39FF14"/>
+          <stop offset="100%" stop-color="#BC13FE"/>
+        </linearGradient>
+        <radialGradient id="lm_glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00F3FF" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="64" cy="64" r="56" fill="url(#lm_glow)"/>
+      <path d="M64 12 L112 40 L112 88 L64 116 L16 88 L16 40 Z" fill="#080F1D" stroke="url(#lm_grad)" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M64 26 L98 48 L98 80 L64 102 L30 80 L30 48 Z" fill="#0F1F38" stroke="#39FF14" stroke-width="3" opacity="0.85"/>
+      <polygon points="64,38 86,52 86,76 64,90 42,76 42,52" fill="url(#lm_grad)"/>
+      <circle cx="64" cy="64" r="9" fill="#FFFFFF"/>
+    </svg>
