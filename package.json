@@ -1,9 +1,17 @@
 {
   "name": "nocatch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Universal Google NotebookLM Harvester by Lorapok Labs — Web App, Discord Bot, Browser Extension & Loragent Agent",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lorapok/nocatch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lorapok/nocatch/issues"
+  },
+  "homepage": "https://nocatch.lorapok.tech",
   "workspaces": [
     "packages/*",
     "web",

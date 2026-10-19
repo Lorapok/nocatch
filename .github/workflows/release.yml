@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Core Tests
+        run: npm run test:core
+
+      - name: Build Web Application
+        run: npm run build:web
+
+      - name: Package Release Assets
+        run: |
+          mkdir -p release-dist
+          zip -r release-dist/nocatch-browser-extension.zip extension/
+          zip -r release-dist/nocatch-core-cli.zip packages/core/
+          zip -r release-dist/nocatch-web-dist.zip web/dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-dist/*.zip
+            assets/branding/nocatch-hero-banner.png
+            assets/branding/nocatch-studio-map.png
+            assets/branding/nocatch-app-icon.png
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

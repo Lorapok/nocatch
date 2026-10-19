@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="rdBg" cx="45%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#140a02"/>
+      <stop offset="35%" stop-color="#0a0502"/>
+      <stop offset="70%" stop-color="#030712"/>
+      <stop offset="100%" stop-color="#010206"/>
+    </radialGradient>
+    <linearGradient id="rdBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4500"/>
+      <stop offset="50%" stop-color="#00F3FF"/>
+      <stop offset="100%" stop-color="#39FF14"/>
+    </linearGradient>
+    <filter id="rdGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#rdBg)"/>
+  <rect x="20" y="20" width="1160" height="590" rx="20" fill="none" stroke="url(#rdBorder)" stroke-width="2" opacity="0.7"/>
+
+  <!-- Left: Content -->
+  <g transform="translate(70, 75)">
+    <rect width="260" height="34" rx="17" fill="#ff4500" fill-opacity="0.15" stroke="#FF4500" stroke-width="1.2"/>
+    <circle cx="18" cy="17" r="5" fill="#FF4500"/>
+    <text x="34" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">REDDIT COMMUNITY RELEASE</text>
+
+    <text x="0" y="90" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">
+      NoCatch <tspan fill="#FF4500">v2.0</tspan>
+    </text>
+    <text x="0" y="135" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="700" fill="#00F3FF">
+      Universal Google NotebookLM Harvester
+    </text>
+    <text x="0" y="175" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#94A3B8">
+      Download podcasts (M4A), videos (MP4), and briefing docs from any notebook.
+    </text>
+    <text x="0" y="200" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#94A3B8">
+      100% Free • Direct Google CDN Streams • Client-Side ZIP Packaging
+    </text>
+
+    <!-- Bullet Highlights -->
+    <g transform="translate(0, 240)">
+      <rect width="480" height="36" rx="8" fill="#0c0703" stroke="#2a1405" stroke-width="1"/>
+      <text x="14" y="23" font-family="monospace" font-size="12" fill="#FF4500">⚡ Direct RPC Protocol</text>
+      <text x="210" y="23" font-family="monospace" font-size="12" fill="#64748B">No browser overhead (&lt;2s)</text>
+    </g>
+
+    <g transform="translate(0, 285)">
+      <rect width="480" height="36" rx="8" fill="#0c0703" stroke="#2a1405" stroke-width="1"/>
+      <text x="14" y="23" font-family="monospace" font-size="12" fill="#39FF14">📦 Master Studio ZIP</text>
+      <text x="210" y="23" font-family="monospace" font-size="12" fill="#64748B">Client-side JSZip engine</text>
+    </g>
+
+    <g transform="translate(0, 350)">
+      <rect width="380" height="42" rx="12" fill="#01060f" stroke="#00F3FF" stroke-width="1.5"/>
+      <circle cx="20" cy="21" r="5" fill="#39FF14"/>
+      <text x="36" y="27" font-family="monospace" font-size="15" font-weight="700" fill="#FFFFFF">https://nocatch.lorapok.tech</text>
+    </g>
+  </g>
+
+  <!-- Right: Visual -->
+  <g transform="translate(730, 130)">
+    <circle cx="200" cy="200" r="180" fill="#ff4500" fill-opacity="0.12" filter="url(#rdGlow)"/>
+    <ellipse cx="140" cy="240" rx="60" ry="56" fill="#00a8cc"/>
+    <ellipse cx="190" cy="230" rx="66" ry="62" fill="#00c9b7"/>
+    <ellipse cx="240" cy="220" rx="72" ry="68" fill="#14e396"/>
+    <path d="M 130 270 C 180 300, 250 290, 310 240" fill="none" stroke="#39FF14" stroke-width="6" stroke-linecap="round" filter="url(#rdGlow)"/>
+    <ellipse cx="310" cy="205" rx="80" ry="74" fill="#00F3FF"/>
+    <path d="M 220 190 C 230 90, 380 90, 390 190" fill="none" stroke="#39FF14" stroke-width="10" stroke-linecap="round" filter="url(#rdGlow)"/>
+    <rect x="208" y="170" width="20" height="50" rx="10" fill="#020814" stroke="#FF4500" stroke-width="3"/>
+    <rect x="382" y="170" width="20" height="50" rx="10" fill="#020814" stroke="#39FF14" stroke-width="3"/>
+    <rect x="265" y="180" width="95" height="54" rx="16" fill="#020814" stroke="#00F3FF" stroke-width="3.5"/>
+    <rect x="278" y="195" width="22" height="22" rx="6" fill="#39FF14" filter="url(#rdGlow)"/>
+    <rect x="325" y="195" width="22" height="22" rx="6" fill="#39FF14" filter="url(#rdGlow)"/>
+  </g>
+</svg>

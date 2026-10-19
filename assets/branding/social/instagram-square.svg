@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <radialGradient id="sqBg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#0c1829"/>
+      <stop offset="55%" stop-color="#040914"/>
+      <stop offset="100%" stop-color="#010206"/>
+    </radialGradient>
+    <linearGradient id="sqBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F3FF"/>
+      <stop offset="35%" stop-color="#39FF14"/>
+      <stop offset="70%" stop-color="#BC13FE"/>
+      <stop offset="100%" stop-color="#FF007F"/>
+    </linearGradient>
+    <filter id="sqGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#sqBg)"/>
+  <rect x="28" y="28" width="1024" height="1024" rx="36" fill="none" stroke="url(#sqBorder)" stroke-width="4" opacity="0.8"/>
+
+  <!-- Top Pill -->
+  <g transform="translate(390, 80)">
+    <rect width="300" height="44" rx="22" fill="#02140a" stroke="#39FF14" stroke-width="1.5"/>
+    <circle cx="24" cy="22" r="6" fill="#39FF14"/>
+    <text x="44" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#39FF14" letter-spacing="2">OFFICIAL RELEASE</text>
+  </g>
+
+  <!-- Title & Subtitle -->
+  <g transform="translate(540, 200)" text-anchor="middle">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="76" font-weight="900" fill="#FFFFFF" letter-spacing="-1">
+      NoCatch <tspan fill="#39FF14">⚡</tspan>
+    </text>
+    <text x="0" y="50" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="700" fill="#00F3FF">
+      Universal Google NotebookLM Harvester
+    </text>
+    <text x="0" y="86" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#94A3B8">
+      Download pristine podcasts, videos, and study guides in 1-click.
+    </text>
+  </g>
+
+  <!-- Centered Larva Mascot -->
+  <g transform="translate(320, 360)">
+    <circle cx="220" cy="220" r="210" fill="#00F3FF" fill-opacity="0.12" filter="url(#sqGlow)"/>
+    <ellipse cx="220" cy="390" rx="190" ry="26" fill="#000000" opacity="0.8"/>
+    <ellipse cx="220" cy="390" rx="170" ry="20" fill="none" stroke="#39FF14" stroke-width="3" opacity="0.6"/>
+
+    <!-- Soundwave Equalizer on left -->
+    <rect x="40" y="210" width="10" height="70" rx="5" fill="#00F3FF" filter="url(#sqGlow)"/>
+    <rect x="58" y="170" width="10" height="110" rx="5" fill="#39FF14" filter="url(#sqGlow)"/>
+    <rect x="76" y="140" width="10" height="140" rx="5" fill="#BC13FE" filter="url(#sqGlow)"/>
+    <rect x="94" y="190" width="10" height="90" rx="5" fill="#00F3FF"/>
+
+    <!-- Body Segments -->
+    <ellipse cx="140" cy="270" rx="66" ry="62" fill="#00a8cc"/>
+    <ellipse cx="195" cy="260" rx="72" ry="68" fill="#00c9b7"/>
+    <ellipse cx="255" cy="250" rx="80" ry="74" fill="#14e396"/>
+    <path d="M 130 300 C 180 330, 270 320, 340 270" fill="none" stroke="#39FF14" stroke-width="7" stroke-linecap="round" filter="url(#sqGlow)"/>
+
+    <!-- Head -->
+    <ellipse cx="335" cy="230" rx="90" ry="84" fill="#00F3FF"/>
+
+    <!-- Antennae -->
+    <path d="M 290 170 Q 255 120 235 100" fill="none" stroke="#00F3FF" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="235" cy="100" r="12" fill="#00F3FF" filter="url(#sqGlow)"/>
+    <path d="M 365 165 Q 405 115 425 95" fill="none" stroke="#39FF14" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="425" cy="95" r="12" fill="#39FF14" filter="url(#sqGlow)"/>
+
+    <!-- Headphones -->
+    <path d="M 235 210 C 245 95, 425 95, 435 210" fill="none" stroke="#39FF14" stroke-width="12" stroke-linecap="round" filter="url(#sqGlow)"/>
+    <rect x="220" y="190" width="24" height="60" rx="12" fill="#020814" stroke="#00F3FF" stroke-width="4"/>
+    <rect x="425" y="190" width="24" height="60" rx="12" fill="#020814" stroke="#39FF14" stroke-width="4"/>
+
+    <!-- Visor -->
+    <rect x="285" y="200" width="112" height="62" rx="18" fill="#020814" stroke="#00F3FF" stroke-width="4"/>
+    <rect x="300" y="217" width="26" height="26" rx="8" fill="#39FF14" filter="url(#sqGlow)"/>
+    <rect x="355" y="217" width="26" height="26" rx="8" fill="#39FF14" filter="url(#sqGlow)"/>
+  </g>
+
+  <!-- Bottom 3 Badges -->
+  <g transform="translate(140, 830)">
+    <rect width="240" height="60" rx="16" fill="#071322" stroke="#00F3FF" stroke-width="1.5"/>
+    <text x="120" y="28" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">128kbps AAC</text>
+    <text x="120" y="46" text-anchor="middle" font-family="monospace" font-size="11" fill="#00F3FF">Dual-Host Podcast</text>
+
+    <g transform="translate(280, 0)">
+      <rect width="240" height="60" rx="16" fill="#071322" stroke="#39FF14" stroke-width="1.5"/>
+      <text x="120" y="28" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">MP4 Video Canvas</text>
+      <text x="120" y="46" text-anchor="middle" font-family="monospace" font-size="11" fill="#39FF14">H.264 AVC1 @ 30fps</text>
+    </g>
+
+    <g transform="translate(560, 0)">
+      <rect width="240" height="60" rx="16" fill="#071322" stroke="#BC13FE" stroke-width="1.5"/>
+      <text x="120" y="28" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Master ZIP Bundle</text>
+      <text x="120" y="46" text-anchor="middle" font-family="monospace" font-size="11" fill="#BC13FE">In-Browser JSZip</text>
+    </g>
+  </g>
+
+  <!-- Live Domain Pill -->
+  <g transform="translate(340, 940)">
+    <rect width="400" height="48" rx="24" fill="#01060f" stroke="#00F3FF" stroke-width="2"/>
+    <circle cx="26" cy="24" r="6" fill="#39FF14"/>
+    <text x="46" y="30" font-family="monospace" font-size="16" font-weight="800" fill="#FFFFFF">https://nocatch.lorapok.tech</text>
+  </g>
+</svg>

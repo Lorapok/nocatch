@@ -7,9 +7,12 @@
 > **Universal Google NotebookLM Media & Artifact Harvester**  
 > *Official Product of [Lorapok Labs](https://lorapok.tech) • Hosted at [nocatch.lorapok.tech](https://nocatch.lorapok.tech)*
 
-[![Lorapok Labs](https://img.shields.io/badge/Lorapok%20Labs-Official%20Product-00F3FF?style=for-the-badge&logo=google)](https://lorapok.tech)
+[![GitHub Release](https://img.shields.io/github/v/release/Lorapok/nocatch?style=for-the-badge&color=39FF14&label=Release)](https://github.com/Lorapok/nocatch/releases)
+[![npm version](https://img.shields.io/npm/v/lorapok-nocatch?style=for-the-badge&color=00F3FF&label=npm)](https://www.npmjs.com/package/lorapok-nocatch)
+[![Packagist Version](https://img.shields.io/packagist/v/lorapok/nocatch?style=for-the-badge&color=BC13FE&label=Packagist)](https://packagist.org/packages/lorapok/nocatch)
+[![Discord Bot](https://img.shields.io/badge/Discord-Bot%20v2.0-5865F2?style=for-the-badge&logo=discord&logoColor=white)](docs/DISCORD_BOT_PUBLISHING.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-39FF14?style=for-the-badge)](LICENSE)
-[![Ecosystem: Loragent](https://img.shields.io/badge/Ecosystem-Loragent%20v2.0-BC13FE?style=for-the-badge)](https://github.com/Maijied/Loragent)
+[![Zero-Trust](https://img.shields.io/badge/Security-Zero--Trust%20Verified-00F3FF?style=for-the-badge)](SECURITY.md)
 
 ---
 
@@ -173,7 +176,37 @@ npx wrangler pages deploy dist --project-name nocatch
 
 ---
 
+---
+
+## 🎨 Social Media Sharing Suite
+
+Pristine visual assets tailored for social media sharing, repo previews, and Discord discovery:
+
+| Platform | Asset File | Resolution | Description |
+|---|---|---|---|
+| **GitHub Social Preview** | [`.github/assets/github-social-preview.png`](.github/assets/github-social-preview.png) | 1280x640 (2:1) | Official GitHub repository card |
+| **Discord Banner & Embed** | [`assets/branding/social/discord-banner.png`](assets/branding/social/discord-banner.png) | 1280x720 (16:9) | Discord App Directory & Embed banner |
+| **Twitter / X Large Card** | [`assets/branding/social/twitter-header.png`](assets/branding/social/twitter-header.png) | 1200x675 (16:9) | Twitter Summary Card with large image |
+| **LinkedIn Share Graphic** | [`assets/branding/social/linkedin-share.png`](assets/branding/social/linkedin-share.png) | 1200x627 (1.91:1)| Professional feed landscape post |
+| **Reddit Community Card** | [`assets/branding/social/reddit-banner.png`](assets/branding/social/reddit-banner.png) | 1200x630 | Subreddit showcase banner |
+| **Instagram / Square Post**| [`assets/branding/social/instagram-square.png`](assets/branding/social/instagram-square.png) | 1080x1080 (1:1) | Cyber Larva mascot centered square |
+
+---
+
+## 🏛 Community & Governance
+
+- **Full Documentation & Guide**: [docs/TUTORIAL.md](docs/TUTORIAL.md)
+- **Discord Bot Official Publishing Guide**: [docs/DISCORD_BOT_PUBLISHING.md](docs/DISCORD_BOT_PUBLISHING.md)
+- **Privacy Policy**: [docs/PRIVACY.md](docs/PRIVACY.md)
+- **Terms of Service**: [docs/TERMS.md](docs/TERMS.md)
+- **Contribution Guidelines**: [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Code of Conduct**: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- **Security Policy**: [SECURITY.md](SECURITY.md)
+- **Changelog**: [CHANGELOG.md](CHANGELOG.md)
+
+---
+
 ## 📄 License
 
-Created by **Lorapok Labs** under the **MIT License**.  
-*For questions or enterprise deployments, visit [lorapok.tech](https://lorapok.tech).*
+Created by **Lorapok Labs** under the **[MIT License](LICENSE)**.  
+*For questions, support, or enterprise deployments, visit [lorapok.tech](https://lorapok.tech).*

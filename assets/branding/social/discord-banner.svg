@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <radialGradient id="discBg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#0b172a"/>
+      <stop offset="60%" stop-color="#040914"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </radialGradient>
+    <linearGradient id="discBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5865F2"/>
+      <stop offset="50%" stop-color="#00F3FF"/>
+      <stop offset="100%" stop-color="#39FF14"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#discBg)"/>
+  <rect x="24" y="24" width="1232" height="672" rx="24" fill="none" stroke="url(#discBorder)" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- Discord Badge -->
+  <g transform="translate(80, 80)">
+    <rect width="260" height="40" rx="20" fill="#5865F2" fill-opacity="0.15" stroke="#5865F2" stroke-width="1.5"/>
+    <circle cx="24" cy="20" r="6" fill="#5865F2"/>
+    <text x="40" y="26" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">OFFICIAL DISCORD APP</text>
+  </g>
+
+  <!-- Title & Description -->
+  <g transform="translate(80, 180)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" letter-spacing="-1">
+      NoCatch <tspan fill="#39FF14">for Discord</tspan>
+    </text>
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="500" fill="#94A3B8">
+      Instant Google NotebookLM Harvester in Channels &amp; DMs
+    </text>
+    <text x="0" y="95" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#64748B">
+      Download original 128kbps stereo podcasts, video canvases, and notes with 1 click.
+    </text>
+  </g>
+
+  <!-- Commands Showcase Card -->
+  <g transform="translate(80, 360)">
+    <rect width="560" height="260" rx="20" fill="#030814" stroke="#5865F2" stroke-width="1.8" fill-opacity="0.9"/>
+    
+    <g transform="translate(25, 30)">
+      <text x="0" y="0" font-family="monospace" font-size="14" font-weight="700" fill="#5865F2">DISCORD SLASH COMMANDS</text>
+      
+      <g transform="translate(0, 30)">
+        <rect width="510" height="42" rx="8" fill="#081020" stroke="#1E293B" stroke-width="1"/>
+        <text x="16" y="26" font-family="monospace" font-size="14" font-weight="600" fill="#39FF14">/nocatch audio</text>
+        <text x="170" y="26" font-family="monospace" font-size="13" fill="#94A3B8">&lt;url&gt; • High-fidelity M4A podcast</text>
+      </g>
+
+      <g transform="translate(0, 84)">
+        <rect width="510" height="42" rx="8" fill="#081020" stroke="#1E293B" stroke-width="1"/>
+        <text x="16" y="26" font-family="monospace" font-size="14" font-weight="600" fill="#00F3FF">/nocatch video</text>
+        <text x="170" y="26" font-family="monospace" font-size="13" fill="#94A3B8">&lt;url&gt; • Synchronized MP4 canvas</text>
+      </g>
+
+      <g transform="translate(0, 138)">
+        <rect width="510" height="42" rx="8" fill="#081020" stroke="#1E293B" stroke-width="1"/>
+        <text x="16" y="26" font-family="monospace" font-size="14" font-weight="600" fill="#BC13FE">/nocatch all</text>
+        <text x="170" y="26" font-family="monospace" font-size="13" fill="#94A3B8">&lt;url&gt; • Complete 5-Asset Studio ZIP</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Mascot Visual on Right -->
+  <g transform="translate(720, 160)">
+    <!-- Aura Glow -->
+    <circle cx="240" cy="240" r="220" fill="#00F3FF" fill-opacity="0.12" filter="url(#glow)"/>
+    <ellipse cx="240" cy="400" rx="180" ry="24" fill="#000000" opacity="0.8"/>
+    <ellipse cx="240" cy="400" rx="160" ry="18" fill="none" stroke="#5865F2" stroke-width="3" opacity="0.6"/>
+
+    <!-- Equalizer Soundbars -->
+    <rect x="70" y="210" width="10" height="70" rx="5" fill="#5865F2" filter="url(#glow)"/>
+    <rect x="90" y="170" width="10" height="110" rx="5" fill="#39FF14" filter="url(#glow)"/>
+    <rect x="110" y="140" width="10" height="140" rx="5" fill="#00F3FF" filter="url(#glow)"/>
+    <rect x="130" y="190" width="10" height="90" rx="5" fill="#BC13FE"/>
+
+    <!-- Mascot Body -->
+    <ellipse cx="160" cy="280" rx="70" ry="65" fill="#00a8cc"/>
+    <ellipse cx="220" cy="270" rx="76" ry="70" fill="#00c9b7"/>
+    <ellipse cx="280" cy="260" rx="82" ry="76" fill="#14e396"/>
+    <path d="M 150 310 C 200 340, 290 330, 360 280" fill="none" stroke="#39FF14" stroke-width="7" stroke-linecap="round" filter="url(#glow)"/>
+    
+    <!-- Head -->
+    <ellipse cx="360" cy="245" rx="92" ry="84" fill="#00F3FF"/>
+    
+    <!-- Antennae -->
+    <path d="M 320 180 Q 280 130 260 110" fill="none" stroke="#5865F2" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="260" cy="110" r="12" fill="#5865F2" filter="url(#glow)"/>
+    <circle cx="260" cy="110" r="6" fill="#FFFFFF"/>
+
+    <path d="M 390 175 Q 430 125 450 105" fill="none" stroke="#39FF14" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="450" cy="105" r="12" fill="#39FF14" filter="url(#glow)"/>
+    <circle cx="450" cy="105" r="6" fill="#FFFFFF"/>
+
+    <!-- Headphones -->
+    <path d="M 260 220 C 270 110, 440 110, 450 220" fill="none" stroke="#39FF14" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+    <rect x="245" y="200" width="24" height="60" rx="12" fill="#020814" stroke="#5865F2" stroke-width="4"/>
+    <rect x="440" y="200" width="24" height="60" rx="12" fill="#020814" stroke="#39FF14" stroke-width="4"/>
+
+    <!-- Visor & Eyes -->
+    <rect x="310" y="215" width="115" height="64" rx="20" fill="#020814" stroke="#00F3FF" stroke-width="4"/>
+    <rect x="325" y="232" width="28" height="28" rx="8" fill="#39FF14" filter="url(#glow)"/>
+    <rect x="331" y="238" width="16" height="16" rx="4" fill="#FFFFFF"/>
+    <rect x="380" y="232" width="28" height="28" rx="8" fill="#39FF14" filter="url(#glow)"/>
+    <rect x="386" y="238" width="16" height="16" rx="4" fill="#FFFFFF"/>
+  </g>
+</svg>

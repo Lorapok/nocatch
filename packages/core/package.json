@@ -1,6 +1,6 @@
 {
   "name": "lorapok-nocatch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Universal Google NotebookLM Media & Artifact Harvester by Lorapok Labs",
   "main": "src/index.js",
   "type": "module",

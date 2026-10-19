@@ -1,5 +1,6 @@
 {
     "name": "lorapok/nocatch",
+    "version": "2.0.0",
     "description": "Universal Google NotebookLM Media & Artifact Harvester by Lorapok Labs",
     "type": "library",
     "license": "MIT",

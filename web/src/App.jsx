@@ -1515,10 +1515,12 @@ Mission Control: https://lorapok.tech
             <span className="text-xs text-slate-400">A Product of <a href="https://lorapok.tech" className="text-slate-300 hover:text-[#39FF14]">Lorapok Labs</a></span>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-400">
             <a href="https://nocatch.lorapok.tech" className="hover:text-white transition">nocatch.lorapok.tech</a>
-            <a href="https://github.com/Lorapok/nocatch" className="hover:text-white transition">GitHub</a>
-            <a href="https://lorapok.tech" className="hover:text-white transition">Mission Control</a>
+            <a href="https://github.com/Lorapok/nocatch/blob/main/docs/PRIVACY.md" target="_blank" rel="noreferrer" className="hover:text-[#00F3FF] transition">Privacy Policy</a>
+            <a href="https://github.com/Lorapok/nocatch/blob/main/docs/TERMS.md" target="_blank" rel="noreferrer" className="hover:text-[#39FF14] transition">Terms of Service</a>
+            <a href="https://github.com/Lorapok/nocatch" target="_blank" rel="noreferrer" className="hover:text-white transition">GitHub</a>
+            <a href="https://lorapok.tech" target="_blank" rel="noreferrer" className="hover:text-white transition">Mission Control</a>
           </div>
         </div>
       </footer>

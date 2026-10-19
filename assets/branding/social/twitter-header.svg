@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <radialGradient id="twBg" cx="40%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#091424"/>
+      <stop offset="60%" stop-color="#030712"/>
+      <stop offset="100%" stop-color="#010206"/>
+    </radialGradient>
+    <linearGradient id="twBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F3FF"/>
+      <stop offset="50%" stop-color="#39FF14"/>
+      <stop offset="100%" stop-color="#BC13FE"/>
+    </linearGradient>
+    <filter id="twGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#twBg)"/>
+  <rect x="20" y="20" width="1160" height="635" rx="20" fill="none" stroke="url(#twBorder)" stroke-width="2" opacity="0.6"/>
+
+  <!-- Top Pill -->
+  <g transform="translate(70, 70)">
+    <rect width="250" height="36" rx="18" fill="#02140a" stroke="#39FF14" stroke-width="1.2"/>
+    <circle cx="20" cy="18" r="5" fill="#39FF14"/>
+    <text x="36" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#39FF14" letter-spacing="1.5">LORAPOK LABS PRODUCT</text>
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(70, 180)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="68" font-weight="900" fill="#FFFFFF" letter-spacing="-1">
+      NoCatch <tspan fill="#39FF14">⚡</tspan>
+    </text>
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="700" fill="#00F3FF">
+      Universal Google NotebookLM Harvester
+    </text>
+    <text x="0" y="100" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#94A3B8">
+      Download podcasts (M4A), video canvas (MP4), and study guides in 1-click.
+    </text>
+
+    <!-- Feature Tags -->
+    <g transform="translate(0, 150)">
+      <rect width="150" height="38" rx="10" fill="#071220" stroke="#00F3FF" stroke-width="1"/>
+      <text x="75" y="24" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#00F3FF">128kbps AAC</text>
+
+      <g transform="translate(165, 0)">
+        <rect width="150" height="38" rx="10" fill="#071220" stroke="#39FF14" stroke-width="1"/>
+        <text x="75" y="24" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#39FF14">MP4 Video</text>
+      </g>
+
+      <g transform="translate(330, 0)">
+        <rect width="180" height="38" rx="10" fill="#071220" stroke="#BC13FE" stroke-width="1"/>
+        <text x="90" y="24" text-anchor="middle" font-family="monospace" font-size="12" font-weight="700" fill="#BC13FE">1-Click ZIP Bundle</text>
+      </g>
+    </g>
+
+    <!-- URL footer -->
+    <g transform="translate(0, 240)">
+      <rect width="360" height="42" rx="12" fill="#01060f" stroke="#00F3FF" stroke-width="1.5"/>
+      <circle cx="22" cy="21" r="5" fill="#39FF14"/>
+      <text x="38" y="27" font-family="monospace" font-size="15" font-weight="700" fill="#FFFFFF">https://nocatch.lorapok.tech</text>
+    </g>
+  </g>
+
+  <!-- Right Mascot -->
+  <g transform="translate(710, 160)">
+    <circle cx="200" cy="200" r="190" fill="#00F3FF" fill-opacity="0.1" filter="url(#twGlow)"/>
+    <!-- Headphone Larva -->
+    <ellipse cx="140" cy="240" rx="60" ry="56" fill="#00a8cc"/>
+    <ellipse cx="190" cy="230" rx="66" ry="62" fill="#00c9b7"/>
+    <ellipse cx="240" cy="220" rx="72" ry="68" fill="#14e396"/>
+    <path d="M 130 270 C 180 300, 250 290, 310 240" fill="none" stroke="#39FF14" stroke-width="6" stroke-linecap="round" filter="url(#twGlow)"/>
+    <ellipse cx="310" cy="205" rx="80" ry="74" fill="#00F3FF"/>
+    <!-- Antennae -->
+    <path d="M 270 150 Q 235 110 220 95" fill="none" stroke="#00F3FF" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="220" cy="95" r="10" fill="#00F3FF" filter="url(#twGlow)"/>
+    <path d="M 330 145 Q 365 105 380 90" fill="none" stroke="#39FF14" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="380" cy="90" r="10" fill="#39FF14" filter="url(#twGlow)"/>
+    <!-- Headphones -->
+    <path d="M 220 190 C 230 90, 380 90, 390 190" fill="none" stroke="#39FF14" stroke-width="10" stroke-linecap="round" filter="url(#twGlow)"/>
+    <rect x="208" y="170" width="20" height="50" rx="10" fill="#020814" stroke="#00F3FF" stroke-width="3"/>
+    <rect x="382" y="170" width="20" height="50" rx="10" fill="#020814" stroke="#39FF14" stroke-width="3"/>
+    <!-- Visor -->
+    <rect x="265" y="180" width="95" height="54" rx="16" fill="#020814" stroke="#00F3FF" stroke-width="3.5"/>
+    <rect x="278" y="195" width="22" height="22" rx="6" fill="#39FF14" filter="url(#twGlow)"/>
+    <rect x="325" y="195" width="22" height="22" rx="6" fill="#39FF14" filter="url(#twGlow)"/>
+  </g>
+</svg>
