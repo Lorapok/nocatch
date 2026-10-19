@@ -49,7 +49,44 @@ nocatch/
 
 ---
 
-## 🚀 Quick Start
+## 📚 Complete Tutorial & Documentation
+> Looking for the complete, step-by-step user manual?  
+> 👉 **[Read the Full Tutorial & Guide (docs/TUTORIAL.md)](docs/TUTORIAL.md)** covering link acquisition, player features, browser extensions, Discord bots, and API reference.
+
+---
+
+## 🚀 How to Use NoCatch (4 Simple Steps)
+
+```
+[1. Copy Google Notebook Link] ──> [2. Paste on nocatch.lorapok.tech] ──> [3. Preview Live] ──> [4. Download 1-Click]
+```
+
+### Step 1: Get your NotebookLM Link
+- **Studio Artifact Link (Recommended):** Open your notebook, click the **Audio Overview** or generated note in the right-hand **Studio** panel. Copy the URL from your browser address bar:
+  `https://notebook.google.com/notebook/<notebook_id>/artifact/<artifact_id>`
+- **Shared Notebook Link:** Click the **Share** button in the top-right corner of NotebookLM and copy:
+  `https://notebook.google.com/notebook/<notebook_id>?utm_source=nlmm_share`
+  *(NoCatch automatically normalizes and resolves shared links).*
+
+### Step 2: Paste & Harvest
+1. Visit **[nocatch.lorapok.tech](https://nocatch.lorapok.tech)**.
+2. Paste your link and click **"Extract & Download"**.
+3. In under 2 seconds, all streams (AAC audio, AVC1 video, markdown notes, source citations) are verified and unlocked.
+
+### Step 3: Listen or Watch
+- **Waveform Audio Player:** Scrub in real-time with waveform visualization, adjust speed (**0.75x to 2x**), or rewind 10 seconds.
+- **Google Video Canvas (MP4):** Switch to the video player tab to watch the internal 30fps Google Video Canvas track.
+
+### Step 4: Download 1-Click or Master ZIP Bundle
+- 🎧 **Audio (.m4a):** Click **"Download .M4A Audio"** for lossless 128kbps stereo AAC.
+- 🎬 **Video (.mp4):** Click **"Download .MP4 Video"** for the 320x240 H.264 canvas track.
+- 📄 **Briefing Doc (.md):** Click **"Download .MD Notes"** for clean Markdown notes.
+- 📋 **Manifest (.json):** Click **"Download .JSON Manifest"** for full citation metadata.
+- 📦 **Master ZIP Archive:** Click **"Download Studio Bundle (ZIP)"** to package all 4 files into a single organized ZIP archive powered by client-side JSZip.
+
+---
+
+## 🛠 Quick Start (Developers & CLI)
 
 ### 1. Command-Line Interface (CLI)
 

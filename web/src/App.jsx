@@ -29,7 +29,14 @@ import {
   Video,
   Film,
   FileCode,
-  PackageCheck
+  PackageCheck,
+  BookOpen,
+  HelpCircle,
+  ChevronDown,
+  ChevronUp,
+  Code,
+  ArrowRight,
+  CheckCircle2
 } from 'lucide-react';
 
 const DEMO_URL = 'https://notebook.google.com/notebook/8b88ac32-9785-489b-a224-9d95864fddca/artifact/48e08424-d530-4d98-990c-a08dce8e015d';
@@ -46,6 +53,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [playerMode, setPlayerMode] = useState('audio'); // audio | video
   const [bundleProgress, setBundleProgress] = useState(null);
+  const [openFaq, setOpenFaq] = useState(null);
   
   // Audio Player State
   const [isPlaying, setIsPlaying] = useState(false);
@@ -387,6 +395,9 @@ Mission Control: https://lorapok.tech
           </div>
 
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+            <a href="#tutorial" className="hover:text-[#39FF14] text-slate-300 font-semibold transition flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-[#39FF14]" /> Tutorial & Guide
+            </a>
             <a href="#features" className="hover:text-white transition">Features</a>
             <a href="#discord-bot" className="hover:text-[#00F3FF] transition flex items-center gap-1">
               <Bot className="w-4 h-4" /> Discord App
@@ -1083,6 +1094,219 @@ Mission Control: https://lorapok.tech
               >
                 <Globe className="w-4 h-4" /> Get NoCatch Extension
               </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Step-by-Step Tutorial & Documentation Section */}
+        <section id="tutorial" className="py-12 border-t border-slate-800/80">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/30 text-xs font-mono text-[#39FF14] mb-3">
+              <BookOpen className="w-3.5 h-3.5" />
+              Complete User Manual & Visual Guide
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              How to Use <span className="bg-gradient-to-r from-[#00F3FF] via-[#39FF14] to-[#BC13FE] bg-clip-text text-transparent">NoCatch</span>
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mt-2">
+              Everything you need to master Google NotebookLM extraction. Learn how links work, how to preview and download all 5 studio assets, and how to automate with bots and extensions.
+            </p>
+          </div>
+
+          {/* 4-Step Process Walkthrough */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {/* Step 1 */}
+            <div className="glass-panel-glow rounded-3xl p-6 sm:p-7 border border-slate-800 space-y-4 hover:border-[#39FF14]/40 transition">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-xl bg-[#39FF14]/15 border border-[#39FF14]/40 text-[#39FF14] flex items-center justify-center font-bold text-sm">
+                    1
+                  </span>
+                  <h3 className="text-lg font-bold text-white">Find Your NotebookLM Link</h3>
+                </div>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Step 1
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Google NotebookLM supports two distinct link types. Both are fully supported by NoCatch:
+              </p>
+              <div className="space-y-2 text-xs font-mono">
+                <div className="bg-black/60 p-3 rounded-xl border border-slate-800">
+                  <div className="text-[#39FF14] font-semibold mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Studio Artifact Link (Recommended)
+                  </div>
+                  <div className="text-slate-400 truncate">notebook.google.com/notebook/&lt;nb_id&gt;/artifact/&lt;artifact_id&gt;</div>
+                  <div className="text-[11px] text-slate-500 mt-1">Found in your browser address bar when clicking your Audio Overview in Studio.</div>
+                </div>
+
+                <div className="bg-black/60 p-3 rounded-xl border border-slate-800">
+                  <div className="text-[#00F3FF] font-semibold mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Shared Notebook Link
+                  </div>
+                  <div className="text-slate-400 truncate">notebook.google.com/notebook/&lt;nb_id&gt;?utm_source=nlmm_share</div>
+                  <div className="text-[11px] text-slate-500 mt-1">Generated by clicking the "Share" button in top-right of NotebookLM.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="glass-panel-glow rounded-3xl p-6 sm:p-7 border border-slate-800 space-y-4 hover:border-[#00F3FF]/40 transition">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-xl bg-[#00F3FF]/15 border border-[#00F3FF]/40 text-[#00F3FF] flex items-center justify-center font-bold text-sm">
+                    2
+                  </span>
+                  <h3 className="text-lg font-bold text-white">Paste, Harvest & Live Preview</h3>
+                </div>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Step 2
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Paste your link into the input bar on NoCatch. The direct RPC engine extracts the stream in under 2 seconds.
+              </p>
+              <div className="space-y-2 text-xs">
+                <div className="bg-black/60 p-3 rounded-xl border border-slate-800 space-y-1">
+                  <div className="text-white font-semibold flex items-center gap-1.5">
+                    <Headphones className="w-3.5 h-3.5 text-[#39FF14]" /> Interactive Waveform Audio Player
+                  </div>
+                  <div className="text-slate-400">Features live audio waveform scrubbing, 10s instant rewind, and speed toggles from <strong>0.75x to 2x</strong>.</div>
+                </div>
+
+                <div className="bg-black/60 p-3 rounded-xl border border-slate-800 space-y-1">
+                  <div className="text-white font-semibold flex items-center gap-1.5">
+                    <Film className="w-3.5 h-3.5 text-[#00F3FF]" /> Synchronized Google Video Canvas (MP4)
+                  </div>
+                  <div className="text-slate-400">Switch tabs to view the internal 320x240 AVC1 30fps video stream generated inside Google's DASH manifest.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="glass-panel-glow rounded-3xl p-6 sm:p-7 border border-slate-800 space-y-4 hover:border-[#BC13FE]/40 transition">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-xl bg-[#BC13FE]/15 border border-[#BC13FE]/40 text-[#BC13FE] flex items-center justify-center font-bold text-sm">
+                    3
+                  </span>
+                  <h3 className="text-lg font-bold text-white">Download Studio Files (5 Formats)</h3>
+                </div>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Step 3
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Every generated artifact is 100% loss-free and downloadable individually or bundled:
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <span className="font-bold text-[#39FF14]">.M4A Audio</span>
+                  <p className="text-[11px] text-slate-400">Original 128kbps stereo AAC podcast.</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <span className="font-bold text-[#00F3FF]">.MP4 Video</span>
+                  <p className="text-[11px] text-slate-400">320x240 H.264 canvas video track.</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <span className="font-bold text-emerald-400">.MD Notes</span>
+                  <p className="text-[11px] text-slate-400">Synthesized briefing document.</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <span className="font-bold text-[#BC13FE]">.JSON Manifest</span>
+                  <p className="text-[11px] text-slate-400">47 cited source references.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="glass-panel-glow rounded-3xl p-6 sm:p-7 border border-slate-800 space-y-4 hover:border-amber-400/40 transition">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-xl bg-amber-400/15 border border-amber-400/40 text-amber-400 flex items-center justify-center font-bold text-sm">
+                    4
+                  </span>
+                  <h3 className="text-lg font-bold text-white">Client-Side Master ZIP Archive</h3>
+                </div>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  Step 4
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Click <strong>"Download Studio Bundle (ZIP)"</strong> to package all media files into a single organized ZIP archive.
+              </p>
+              <div className="bg-black/60 p-3.5 rounded-xl border border-slate-800 text-xs space-y-1.5 text-slate-300">
+                <div className="flex items-center gap-1.5 text-amber-400 font-semibold">
+                  <Zap className="w-3.5 h-3.5" /> Powered by in-browser JSZip Engine
+                </div>
+                <p className="text-slate-400 leading-relaxed">
+                  Unlike traditional servers that crash or hit 10-second serverless timeouts on 35MB files, NoCatch packages everything directly in your browser with real-time compression progress (<code className="text-[#39FF14]">Compressing: 80%</code>).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive FAQ Accordion */}
+          <div className="glass-panel rounded-3xl p-6 sm:p-8 space-y-4 mb-8">
+            <div className="flex items-center gap-2 mb-2">
+              <HelpCircle className="w-5 h-5 text-[#00F3FF]" />
+              <h3 className="text-xl font-bold text-white">Frequently Asked Questions & Answers</h3>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                {
+                  q: "What if Google NotebookLM says 'Artifact ID not detected'?",
+                  a: "Google requires the direct artifact ID to know which specific podcast or note you wish to download from a shared notebook. Click on the Audio Overview in your Studio panel and copy the URL from your browser address bar (it ends in /artifact/<uuid>)."
+                },
+                {
+                  q: "How does NoCatch download high-fidelity 128kbps AAC without transcoding?",
+                  a: "NoCatch queries Google's internal v9rmvd batchExecute RPC to retrieve Google's upstream CDN URLs on lh3.googleusercontent.com and drum.usercontent.google.com. You receive the exact bit-for-bit file generated by Google's audio synthesizers."
+                },
+                {
+                  q: "Can I download private notebooks where I am signed in?",
+                  a: "Yes! You can provide your Google session Cookie in the API request body, or load the NoCatch Browser Extension which automatically inherits your active Google session cookies."
+                },
+                {
+                  q: "How do I install the Browser Extension for 1-click downloads?",
+                  a: "In Chrome, Edge, or Brave, open chrome://extensions, toggle Developer Mode on, click 'Load unpacked', and select the extension folder in the repository. A floating ⚡ NoCatch button will appear on Google NotebookLM, Discord Web, X/Twitter, Reddit, and LinkedIn."
+                },
+                {
+                  q: "Where is the complete developer documentation and offline manual?",
+                  a: "The full documentation with architecture diagrams, CLI guides, and Discord bot integration is in docs/TUTORIAL.md in the GitHub repository."
+                }
+              ].map((faq, idx) => (
+                <div key={idx} className="rounded-2xl bg-black/60 border border-slate-800 overflow-hidden transition">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    className="w-full p-4 text-left flex items-center justify-between gap-4 hover:bg-slate-900/60 transition"
+                  >
+                    <span className="text-sm font-semibold text-white">{faq.q}</span>
+                    {openFaq === idx ? (
+                      <ChevronUp className="w-4 h-4 text-[#39FF14] shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
+                    )}
+                  </button>
+                  {openFaq === idx && (
+                    <div className="px-4 pb-4 text-xs sm:text-sm text-slate-400 border-t border-slate-800/60 pt-3 leading-relaxed">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-center">
+              <a
+                href="https://github.com/Lorapok/nocatch/blob/main/docs/TUTORIAL.md"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs sm:text-sm font-semibold text-[#00F3FF] transition"
+              >
+                <BookOpen className="w-4 h-4" /> View Full Markdown Tutorial on GitHub
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </section>
