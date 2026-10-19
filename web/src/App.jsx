@@ -96,23 +96,48 @@ export default function App() {
     };
   }, [isPlaying]);
 
-  // Audio Time Updates
+  // Audio Time Updates & Playback State Sync
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
     const onTimeUpdate = () => setCurrentTime(audio.currentTime);
-    const onLoadedMetadata = () => setDuration(audio.duration || (artifact?.audio?.durationSeconds || 0));
+    const onLoadedMetadata = () => {
+      if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      } else if (artifact?.audio?.durationSeconds) {
+        setDuration(artifact.audio.durationSeconds);
+      }
+    };
+    const onDurationChange = () => {
+      if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
     const onEnded = () => setIsPlaying(false);
+    const onError = (e) => {
+      console.warn('Audio stream playback event error:', e);
+      setIsPlaying(false);
+    };
 
+    audio.addEventListener('play', onPlay);
+    audio.addEventListener('pause', onPause);
     audio.addEventListener('timeupdate', onTimeUpdate);
     audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('durationchange', onDurationChange);
     audio.addEventListener('ended', onEnded);
+    audio.addEventListener('error', onError);
 
     return () => {
+      audio.removeEventListener('play', onPlay);
+      audio.removeEventListener('pause', onPause);
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('durationchange', onDurationChange);
       audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('error', onError);
     };
   }, [artifact]);
 
@@ -122,8 +147,12 @@ export default function App() {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().catch(e => console.log('Playback error:', e));
-      setIsPlaying(true);
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(e => {
+        console.error('Playback error:', e);
+        setIsPlaying(false);
+      });
     }
   };
 
@@ -526,9 +555,10 @@ export default function App() {
                 {/* Cyber Audio Player */}
                 <div className="rounded-2xl bg-black/60 border border-slate-800 p-5 space-y-4">
                   <audio
+                    key={artifact.artifactId}
                     ref={audioRef}
-                    src={artifact.audio.directDownloadUrl || artifact.audio.primaryStreamUrl}
-                    preload="metadata"
+                    src={`/api/stream?url=${encodeURIComponent(artifact.audio.primaryStreamUrl || artifact.audio.directDownloadUrl)}`}
+                    preload="auto"
                   />
 
                   {/* Live Waveform Scrubber */}

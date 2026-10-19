@@ -104,6 +104,56 @@ app.get('/api/download', async (req, res) => {
   }
 });
 
+// Audio Playback Stream Proxy (Content-Type: audio/mp4, inline, Range-support)
+app.get('/api/stream', async (req, res) => {
+  const { url } = req.query;
+  if (!url) {
+    return res.status(400).send('Missing "url" parameter');
+  }
+
+  try {
+    const fetchHeaders = {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    };
+    let rawRange = req.headers.range;
+    if (rawRange) {
+      const match = rawRange.trim().match(/^bytes=(\d+)-$/);
+      if (match) {
+        const start = parseInt(match[1], 10);
+        fetchHeaders['Range'] = `bytes=${start}-${start + 50000000}`;
+      } else {
+        fetchHeaders['Range'] = rawRange.trim();
+      }
+    }
+
+    let streamRes = await fetch(url, { headers: fetchHeaders });
+    if (!streamRes.ok && fetchHeaders['Range']) {
+      delete fetchHeaders['Range'];
+      streamRes = await fetch(url, { headers: fetchHeaders });
+    }
+
+    res.status(streamRes.status);
+    res.setHeader('Content-Type', 'audio/mp4');
+    res.setHeader('Content-Disposition', 'inline');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Accept-Ranges', 'bytes');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+
+    if (streamRes.headers.get('content-range')) {
+      res.setHeader('Content-Range', streamRes.headers.get('content-range'));
+    }
+    if (streamRes.headers.get('content-length')) {
+      res.setHeader('Content-Length', streamRes.headers.get('content-length'));
+    }
+
+    const nodeStream = Readable.fromWeb(streamRes.body);
+    nodeStream.pipe(res);
+  } catch (err) {
+    res.status(500).send(`Streaming error: ${err.message}`);
+  }
+});
+
 // Bundle ZIP Endpoint (Downloads audio + writes notes/metadata to ZIP)
 app.post('/api/bundle', async (req, res) => {
   const { url, cookie } = req.body;
